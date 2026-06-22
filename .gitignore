@@ -29,3 +29,11 @@ next-env.d.ts
 
 # vercel
 .vercel
+
+# skills (installés localement, hors périmètre du dépôt)
+/.agents/
+/.claude/skills/
+/skills-lock.json
+
+# fichiers temporaires bureautiques (Word/Office locks)
+~$*

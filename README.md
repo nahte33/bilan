@@ -17,12 +17,20 @@ client (aucun backend, aucune donnée patient persistée). Déployable sur Verce
 ## Architecture
 
 ```
-app/                 écran principal (sélecteur de région + bilan)
+app/
+  layout.tsx         shell du site (header + bandeau + footer)
+  page.tsx           Accueil (présentation, deux publics)
+  outil/page.tsx     l'outil : sélecteur de région + bilan (inchangé)
+  methode/page.tsx   Méthode & sources (tableau généré depuis les données)
+  mentions/page.tsx  Mentions & confidentialité
 lib/moteur/          moteur PUR et générique : types, engine, tests
-data/regions/        données par région (hanche-aine) + registre index.ts
-components/           Questionnaire (adaptatif) + Bilan
+data/regions/        données par région + registre index.ts
+components/           SiteHeader, SiteFooter, OutilBilan, Questionnaire, Bilan
 reference/           fichiers de référence d'origine (non importés au build)
 ```
+
+Le site est **multi-pages** ; l'outil (anamnèse adaptative + bilan en direct)
+vit sur `/outil` et son comportement est strictement identique au prototype.
 
 Le **moteur** est écrit une fois, sans connaître aucune région. Ajouter une
 région = ajouter un fichier dans `data/regions/` + une ligne dans son `index.ts`.
