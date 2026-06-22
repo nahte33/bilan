@@ -38,7 +38,32 @@ npm test         # tests unitaires du moteur (scénarios de référence)
 npm run build    # build de production (statique)
 ```
 
-## État
+## Régions couvertes
 
-Première itération (section 9 du brief) : moteur + région hanche/aine + UI +
-tests. **En attente de relecture humaine** avant d'ajouter d'autres régions.
+Chaque région est un module `data/regions/<region>.ts` ; le moteur est inchangé.
+
+| Région | Entités | Principales sources (PubMed + DOI) |
+|---|---|---|
+| Hanche / aine | 10 | Doha 2015, Warwick 2016, Reiman 2013, Dhillon 2025… |
+| Genou | 11 | Benjaminse 2006, van Eck 2012, Sokal 2022, Smith 2015, Kazemi 2023 (Ottawa), Crossley 2016 |
+| Cheville / pied | 9 | Gomes 2022 (Ottawa), Netterström-Wedin 2021 ×2, Maffulli 1998, Cushman 2024 |
+| Cuisse / ischio | 6 | Pollock 2014 (British Athletics), Cacchio 2012 |
+| Épaule | 8 | Hegedus 2012, Gismervik 2017, Luime 2004 (JAMA) |
+| Rachis lombaire | 7 | Downie 2013 (BMJ), Scaia 2012 |
+| Coude | 6 | O'Driscoll 2007 (hook test) |
+| Poignet / main | 7 | Mallee 2014 (scaphoïde) |
+| Rachis cervical | 5 | Thoomes 2017 (Spurling) |
+
+> ⚠️ **Sourçage et honnêteté épistémique.** Toutes les valeurs Se/Sp proviennent
+> d'articles réels (PubMed, DOI cités dans les champs `source`). Quand l'exactitude
+> d'un test n'est pas établie dans la littérature, elle est explicitement marquée
+> `// TODO à sourcer/valider` plutôt qu'inventée. Les poids et seuils sont des
+> jugements cliniques **provisoires**.
+
+## État — à valider par un humain
+
+Les modules sont **structurés et sourcés** mais **NON encore validés cliniquement** :
+les étapes 7-8 du brief (relecture par un confrère + test rétrospectif sur cas
+connus pour recalibrer les poids) restent à réaliser avant tout usage réel. Aucun
+module n'est « done » au sens de la section 8 tant que cette validation humaine
+n'a pas eu lieu.

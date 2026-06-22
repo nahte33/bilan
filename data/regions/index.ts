@@ -12,6 +12,9 @@ import { chevillePied } from "./cheville-pied";
 import { cuisse } from "./cuisse";
 import { epaule } from "./epaule";
 import { rachisLombaire } from "./rachis-lombaire";
+import { coude } from "./coude";
+import { poignetMain } from "./poignet-main";
+import { rachisCervical } from "./rachis-cervical";
 
 export interface EntreeRegion {
   id: string;
@@ -27,9 +30,12 @@ export const REGIONS: Record<string, Region> = {
   cuisse: cuisse,
   epaule: epaule,
   rachis_lombaire: rachisLombaire,
+  coude: coude,
+  poignet_main: poignetMain,
+  rachis_cervical: rachisCervical,
 };
 
-/** Ordre d'affichage du sélecteur (régions à venir incluses, désactivées). */
+/** Ordre d'affichage du sélecteur. */
 export const REGIONS_MENU: { id: string; nom: string; aVenir?: boolean }[] = [
   { id: "hanche_aine", nom: hancheAine.nom },
   { id: "genou", nom: genou.nom },
@@ -37,9 +43,9 @@ export const REGIONS_MENU: { id: string; nom: string; aVenir?: boolean }[] = [
   { id: "cuisse", nom: cuisse.nom },
   { id: "epaule", nom: epaule.nom },
   { id: "rachis_lombaire", nom: rachisLombaire.nom },
-  { id: "coude", nom: "Coude — à venir", aVenir: true },
-  { id: "poignet_main", nom: "Poignet / main — à venir", aVenir: true },
-  { id: "rachis_cervical", nom: "Rachis cervical — à venir", aVenir: true },
+  { id: "coude", nom: coude.nom },
+  { id: "poignet_main", nom: poignetMain.nom },
+  { id: "rachis_cervical", nom: rachisCervical.nom },
 ];
 
 export const REGION_DEFAUT = "hanche_aine";
