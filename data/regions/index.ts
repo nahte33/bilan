@@ -11,6 +11,7 @@ import { genou } from "./genou";
 import { chevillePied } from "./cheville-pied";
 import { cuisse } from "./cuisse";
 import { epaule } from "./epaule";
+import { rachisLombaire } from "./rachis-lombaire";
 
 export interface EntreeRegion {
   id: string;
@@ -25,6 +26,7 @@ export const REGIONS: Record<string, Region> = {
   cheville_pied: chevillePied,
   cuisse: cuisse,
   epaule: epaule,
+  rachis_lombaire: rachisLombaire,
 };
 
 /** Ordre d'affichage du sélecteur (régions à venir incluses, désactivées). */
@@ -34,7 +36,10 @@ export const REGIONS_MENU: { id: string; nom: string; aVenir?: boolean }[] = [
   { id: "cheville_pied", nom: chevillePied.nom },
   { id: "cuisse", nom: cuisse.nom },
   { id: "epaule", nom: epaule.nom },
-  { id: "rachis_lombaire", nom: "Rachis lombaire — à venir", aVenir: true },
+  { id: "rachis_lombaire", nom: rachisLombaire.nom },
+  { id: "coude", nom: "Coude — à venir", aVenir: true },
+  { id: "poignet_main", nom: "Poignet / main — à venir", aVenir: true },
+  { id: "rachis_cervical", nom: "Rachis cervical — à venir", aVenir: true },
 ];
 
 export const REGION_DEFAUT = "hanche_aine";
