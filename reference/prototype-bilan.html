@@ -1,0 +1,421 @@
+<!--
+  PROTOTYPE — Aide au raisonnement clinique (douleurs MSK du sportif)
+  ------------------------------------------------------------------
+  Architecture en 2 parties, volontairement séparées :
+    1) DONNÉES  -> objet REGIONS. Pour ajouter une région (genou, épaule…),
+       on DUPLIQUE un bloc région avec le même format. RIEN d'autre à toucher.
+    2) MOTEUR   -> générique. Ne dépend d'aucune région en particulier :
+       affichage conditionnel des questions, score, bandes, tests, drapeaux.
+
+  C'est exactement ce qu'on confie à Claude Code : le moteur est écrit une fois,
+  chaque partie du corps = un nouveau bloc de données.
+
+  Rappel d'usage : aide au raisonnement, le clinicien décide. Bandes = seuils de
+  jugement, pas des probabilités validées. Poids et Se/Sp à recalibrer.
+-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bilan MSK — prototype</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap');
+
+  :root{
+    --bg:#EFF2F5; --surface:#FFFFFF; --ink:#16242E; --soft:#5C6E79; --line:#E1E8ED;
+    --teal:#0E7C7B; --teal-bg:#E2F0EF; --blue:#4F7CA8; --grey:#9BA8B1;
+    --red:#B3261E; --red-bg:#FBE9E6; --amber:#9C6A12; --amber-bg:#F6EEDD;
+    --r:12px; --shadow:0 1px 2px rgba(16,40,55,.06),0 8px 24px rgba(16,40,55,.05);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:Inter,system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1100px;margin:0 auto;padding:28px 20px 80px}
+
+  header{margin-bottom:22px}
+  .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:600}
+  h1{font-family:Newsreader,serif;font-weight:500;font-size:30px;line-height:1.1;margin:6px 0 4px}
+  .lede{color:var(--soft);font-size:14.5px;max-width:60ch}
+  .topbar{display:flex;flex-wrap:wrap;gap:14px;align-items:end;justify-content:space-between;margin-top:16px}
+  .region{display:flex;flex-direction:column;gap:5px}
+  .region label{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);font-weight:600}
+  select{font:inherit;font-size:14px;padding:9px 12px;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--ink)}
+  .reset{font:inherit;font-size:13px;color:var(--soft);background:none;border:1px solid var(--line);
+    padding:9px 14px;border-radius:9px;cursor:pointer}
+  .reset:hover{border-color:var(--soft);color:var(--ink)}
+
+  .grid{display:grid;grid-template-columns:1fr;gap:20px}
+  @media(min-width:880px){.grid{grid-template-columns:1.05fr .95fr;align-items:start}
+    .bilan{position:sticky;top:20px}}
+
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+  .panel-h{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .panel-h h2{font-family:Newsreader,serif;font-weight:500;font-size:18px;margin:0}
+  .progress{font-size:12.5px;color:var(--soft)}
+  .panel-body{padding:8px 18px 18px}
+
+  .q{padding:16px 0;border-bottom:1px solid var(--line)}
+  .q:last-child{border-bottom:none}
+  .q-txt{font-size:14.5px;font-weight:500;margin-bottom:9px}
+  .q-aide{font-size:12.5px;color:var(--soft);font-weight:400;margin-top:3px}
+  .opts{display:flex;flex-wrap:wrap;gap:7px}
+  .pill{font:inherit;font-size:13px;padding:8px 13px;border:1px solid var(--line);background:var(--surface);
+    color:var(--ink);border-radius:999px;cursor:pointer;transition:.12s}
+  .pill:hover{border-color:var(--teal)}
+  .pill.actif{background:var(--teal);border-color:var(--teal);color:#fff;font-weight:500}
+  .pill.no.actif{background:var(--soft);border-color:var(--soft)}
+
+  /* Bilan */
+  .empty{padding:30px 4px;text-align:center;color:var(--soft);font-size:14px}
+  .flag{margin:0 0 12px;padding:13px 15px;border-radius:10px;background:var(--red-bg);
+    border:1px solid #EAC3BD}
+  .flag .t{display:flex;align-items:center;gap:8px;font-weight:600;color:var(--red);font-size:13.5px}
+  .flag .t::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--red);flex:none}
+  .flag .c{font-size:13px;color:#6C2018;margin-top:5px}
+
+  .block-lbl{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);
+    font-weight:600;margin:18px 0 9px}
+  .block-lbl:first-child{margin-top:6px}
+
+  .hyp{padding:12px 0;border-bottom:1px solid var(--line)}
+  .hyp:last-child{border-bottom:none}
+  .hyp-top{display:flex;align-items:baseline;gap:10px}
+  .band{font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+    padding:3px 8px;border-radius:6px;flex:none;color:#fff}
+  .b-forte{background:var(--teal)} .b-moderee{background:var(--blue)} .b-faible{background:var(--grey)}
+  .hyp-nom{font-family:Newsreader,serif;font-size:16px;font-weight:500}
+  .hyp-quad{font-size:11.5px;color:var(--soft)}
+  .why{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+  .why span{font-size:11.5px;color:var(--teal);background:var(--teal-bg);padding:3px 8px;border-radius:6px}
+
+  .test{padding:11px 0;border-bottom:1px solid var(--line)}
+  .test:last-child{border-bottom:none}
+  .test-nom{font-size:14px;font-weight:500}
+  .test-meta{font-size:12.5px;color:var(--soft);margin-top:3px}
+  .test.screen{background:var(--amber-bg);margin:4px -10px 0;padding:11px 10px;border-radius:8px;border:none}
+  .test.screen .test-nom{color:var(--amber)}
+
+  footer{margin-top:24px;font-size:12px;color:var(--soft);max-width:70ch}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Aide au raisonnement clinique</div>
+    <h1>Bilan orienté — douleurs musculosquelettiques du sportif</h1>
+    <p class="lede">L'anamnèse fait apparaître les questions pertinentes au fur et à mesure, classe les hypothèses par cohérence et propose les tests qui les départagent. Le clinicien interprète et décide.</p>
+    <div class="topbar">
+      <div class="region">
+        <label for="sel">Région</label>
+        <select id="sel">
+          <option value="hanche_aine">Hanche / aine</option>
+          <option value="" disabled>Genou — à venir</option>
+          <option value="" disabled>Épaule — à venir</option>
+        </select>
+      </div>
+      <button class="reset" id="reset">Réinitialiser</button>
+    </div>
+  </header>
+
+  <div class="grid">
+    <section class="panel">
+      <div class="panel-h"><h2>Anamnèse</h2><span class="progress" id="prog"></span></div>
+      <div class="panel-body" id="questions"></div>
+    </section>
+
+    <section class="panel bilan">
+      <div class="panel-h"><h2>Bilan orienté</h2></div>
+      <div class="panel-body" id="resultats"></div>
+    </section>
+  </div>
+
+  <footer>
+    Prototype à but de démonstration. Les bandes de cohérence reposent sur des seuils de jugement clinique (non validés) ; les sensibilités/spécificités citées varient selon les études. Cet outil n'établit pas de diagnostic et ne remplace pas l'examen ni la décision du clinicien.
+  </footer>
+</div>
+
+<script>
+/* =====================================================================
+   1) DONNÉES — RÉGION  (dupliquer ce bloc pour chaque partie du corps)
+   ===================================================================== */
+const REGIONS = {
+  hanche_aine: {
+    nom: "Hanche / aine",
+    BANDES: { forte: 4, moderee: 2 },
+
+    QUESTIONS: [
+      { id:"localisation", texte:"Localisation de la douleur principale ?", type:"choix_unique",
+        options:[
+          {valeur:"pubis_adducteurs",  label:"Pubis / insertion des adducteurs"},
+          {valeur:"pli_aine_anterieur",label:"Pli de l'aine / face antérieure"},
+          {valeur:"profond_intra",     label:"Profonde, en C (signe du C)"},
+          {valeur:"lateral_trochanter",label:"Latérale (grand trochanter)"},
+          {valeur:"posterieur_fessier",label:"Postérieure / fessière"} ] },
+      { id:"installation", texte:"Mode d'installation ?", type:"choix_unique",
+        options:[ {valeur:"aigu_traumatique",label:"Aiguë, sur un geste"}, {valeur:"progressif",label:"Progressive / insidieuse"} ] },
+      { id:"debut_contraction_explosive", texte:"Début sur une contraction explosive (sprint, frappe) ?", type:"oui_non",
+        condition:{installation:"aigu_traumatique"}, aide:"Évoque une avulsion apophysaire chez l'adolescent." },
+      { id:"geste_declenchant", texte:"Gestes qui reproduisent la douleur ?", type:"choix_multiple",
+        options:[
+          {valeur:"frappe",label:"Frappe / shoot"}, {valeur:"pivot",label:"Pivots"},
+          {valeur:"sprint",label:"Sprint"}, {valeur:"flexion_assise",label:"Flexion profonde / assise basse"},
+          {valeur:"montee_genou",label:"Montée du genou"}, {valeur:"escaliers",label:"Escaliers"},
+          {valeur:"appui_monopodal",label:"Appui monopodal / impact"} ] },
+      { id:"ressaut", texte:"Ressaut / claquement de hanche ?", type:"oui_non" },
+      { id:"ressaut_localisation", texte:"Le ressaut est plutôt…", type:"choix_unique", condition:{ressaut:true},
+        options:[ {valeur:"anterieur_profond",label:"Antérieur / profond (iliopsoas)"}, {valeur:"lateral",label:"Latéral (bandelette)"} ] },
+      { id:"accrochage_blocage", texte:"Accrochage, blocage ou dérobement ?", type:"oui_non", aide:"Évoque une atteinte intra-articulaire (labrum)." },
+      { id:"aggravation_assis_prolonge", texte:"Aggravation par la position assise prolongée ?", type:"oui_non", aide:"FAI/labrum (antérieur) ou piriforme (postérieur)." },
+      { id:"aggravation_couche_cote", texte:"Douleur couché sur le côté atteint / la nuit ?", type:"oui_non", aide:"Caractéristique de la tendinopathie fessière (GTPS)." },
+      { id:"raideur_matinale_ri", texte:"Raideur matinale et/ou perte de rotation interne ?", type:"oui_non", aide:"Évoque une coxarthrose." },
+      { id:"aggravation_valsalva", texte:"Aggravation à la toux / éternuement / Valsalva ?", type:"oui_non", aide:"Atteinte inguinale ou hernie vraie." },
+      { id:"tumefaction_inguinale", texte:"Tuméfaction inguinale palpable (à l'effort) ?", type:"oui_non", condition:{localisation:"pli_aine_anterieur"}, aide:"Drapeau : oriente vers une hernie vraie." },
+      { id:"irradiation_jambe", texte:"Irradiation fesse / arrière de cuisse / jambe (sciatalgie) ?", type:"oui_non" },
+      { id:"paresthesies", texte:"Engourdissements / fourmillements sur le trajet ?", type:"oui_non", condition:{irradiation_jambe:true}, aide:"Composante neurologique (nerf sciatique)." },
+      { id:"douleur_appui_impact", texte:"Douleur à l'appui monopodal / au saut / à l'impact ?", type:"oui_non", aide:"Drapeau possible : fracture de fatigue du col." },
+      { id:"douleur_nocturne_repos", texte:"Douleur nocturne ou de repos (non mécanique) ?", type:"oui_non" },
+      { id:"signes_systemiques", texte:"Fièvre, altération de l'état général, perte de poids ?", type:"oui_non" },
+      { id:"pic_charge", texte:"Hausse récente et marquée de la charge d'entraînement ?", type:"oui_non" },
+      { id:"facteurs_red_s", texte:"Facteurs RED-S (restriction, aménorrhée, ATCD fracture de fatigue) ?", type:"oui_non", aide:"Majore le risque de fracture de fatigue du col." },
+      { id:"douleur_cyclique_urogenital", texte:"Douleur cyclique ou signes urinaires / gynécologiques ?", type:"oui_non", aide:"Évoque une cause intrapelvienne." },
+      { id:"age", texte:"Tranche d'âge ?", type:"choix_unique",
+        options:[ {valeur:"adolescent",label:"Adolescent"}, {valeur:"adulte",label:"Adulte"}, {valeur:"plus_50",label:"> 50 ans"} ] },
+      { id:"irradiation_lombaire", texte:"Lombalgie associée ?", type:"oui_non", aide:"Possible origine rachidienne référée." }
+    ],
+
+    HYPOTHESES: [
+      { id:"adducteurs", nom:"Atteinte des adducteurs", quadrant:"Médial", indices:[
+        {si:{localisation:"pubis_adducteurs"},poids:3,source:"Doha 2015 ; Hölmich 2004"},
+        {si:{geste_declenchant:"frappe"},poids:2}, {si:{geste_declenchant:"pivot"},poids:1},
+        {si:{installation:"aigu_traumatique"},poids:1} ] },
+      { id:"pubien_symphyse", nom:"Douleur pubienne / symphysaire", quadrant:"Médial", indices:[
+        {si:{localisation:"pubis_adducteurs"},poids:2,source:"Doha 2015"},
+        {si:{installation:"progressif"},poids:2}, {si:{pic_charge:true},poids:1} ] },
+      { id:"inguinal", nom:"Atteinte inguinale (paroi / canal)", quadrant:"Médial", indices:[
+        {si:{localisation:"pli_aine_anterieur"},poids:2,source:"Doha 2015"},
+        {si:{aggravation_valsalva:true},poids:2}, {si:{geste_declenchant:"sprint"},poids:1} ] },
+      { id:"psoas", nom:"Atteinte de l'iliopsoas", quadrant:"Antérieur", indices:[
+        {si:{localisation:"pli_aine_anterieur"},poids:2,source:"Doha 2015"},
+        {si:{geste_declenchant:"montee_genou"},poids:3}, {si:{installation:"progressif"},poids:1} ] },
+      { id:"fai_labral", nom:"Atteinte intra-articulaire (FAI / labrum)", quadrant:"Antérieur", indices:[
+        {si:{localisation:"profond_intra"},poids:3,source:"Accord de Warwick 2016"},
+        {si:{accrochage_blocage:true},poids:2}, {si:{geste_declenchant:"flexion_assise"},poids:2},
+        {si:{aggravation_assis_prolonge:true},poids:1} ] },
+      { id:"coxa_saltans_interna", nom:"Coxa saltans interna", quadrant:"Antérieur", indices:[
+        {si:{ressaut:true},poids:3}, {si:{ressaut_localisation:"anterieur_profond"},poids:2},
+        {si:{localisation:"pli_aine_anterieur"},poids:1} ] },
+      { id:"gluteal_tendinopathy", nom:"Tendinopathie fessière (GTPS)", quadrant:"Latéral", indices:[
+        {si:{localisation:"lateral_trochanter"},poids:3,source:"Grimaldi 2015"},
+        {si:{aggravation_couche_cote:true},poids:2}, {si:{geste_declenchant:"escaliers"},poids:1},
+        {si:{geste_declenchant:"appui_monopodal"},poids:1} ] },
+      { id:"coxa_saltans_externa", nom:"Coxa saltans externa", quadrant:"Latéral", indices:[
+        {si:{ressaut:true},poids:2}, {si:{ressaut_localisation:"lateral"},poids:3},
+        {si:{localisation:"lateral_trochanter"},poids:1} ] },
+      { id:"deep_gluteal_piriforme", nom:"Syndrome glutéal profond / piriforme", quadrant:"Postérieur", indices:[
+        {si:{localisation:"posterieur_fessier"},poids:3,source:"Martin 2014 ; Carro 2016"},
+        {si:{aggravation_assis_prolonge:true},poids:2}, {si:{irradiation_jambe:true},poids:2},
+        {si:{paresthesies:true},poids:1} ] },
+      { id:"coxarthrose", nom:"Coxarthrose", quadrant:"Intra-articulaire", indices:[
+        {si:{raideur_matinale_ri:true},poids:3}, {si:{age:"plus_50"},poids:2},
+        {si:{localisation:"profond_intra"},poids:1}, {si:{installation:"progressif"},poids:1} ] }
+    ],
+
+    TESTS: [
+      { id:"palpation_adducteur_long", nom:"Palpation de l'origine de l'adducteur long", discrimine:["adducteurs"],
+        precision:"Site de douleur le plus prévalent (94%) ; fiabilité inter-examinateur faible à modérée.", source:"Heijboer 2024" },
+      { id:"squeeze_test", nom:"Squeeze test des adducteurs (0° et 45°)", discrimine:["adducteurs","pubien_symphyse"],
+        precision:"Positif dans 62-70% des cas, reproductibilité modérée ; précision >90% sur les atteintes aiguës.", source:"Serner 2016" },
+      { id:"adduction_resistee", nom:"Adduction résistée en abduction maximale", discrimine:["adducteurs"],
+        precision:"Test de résistance positif le plus prévalent (72%), fiabilité substantielle.", source:"Heijboer 2024" },
+      { id:"flexion_hanche_resistee", nom:"Flexion de hanche résistée + Thomas", discrimine:["psoas"],
+        precision:"Distinction iliopsoas / droit fémoral proximal parfois difficile.", source:"Doha 2015" },
+      { id:"crunch_resiste", nom:"Crunch résisté + palpation pubienne", discrimine:["inguinal","pubien_symphyse"] },
+      { id:"fadir", nom:"FADIR (flexion-adduction-RI)", discrimine:["fai_labral"],
+        precision:"Se élevée (≈0,96) / Sp faible (≈0,11) → bon pour ÉLIMINER l'atteinte intra-articulaire.", source:"Reiman 2013" },
+      { id:"faber", nom:"FABER (Patrick)", discrimine:["fai_labral"],
+        precision:"Se faible (≈41%) / Sp élevée (jusqu'à 100%) → bon pour CONFIRMER. Douleur postéro-controlat. → sacro-iliaque.", source:"Dhillon 2025" },
+      { id:"log_roll", nom:"Log roll (rotation passive)", discrimine:["fai_labral"],
+        precision:"Un des tests les plus spécifiques de l'origine intra-articulaire." },
+      { id:"ressaut_actif", nom:"Reproduction active du ressaut", discrimine:["coxa_saltans_interna","coxa_saltans_externa"] },
+      { id:"palpation_trochanter_sls", nom:"Palpation du trochanter + appui monopodal 30 s", discrimine:["gluteal_tendinopathy"],
+        precision:"Palpation Se ≈80% / Sp ≈47% ; appui monopodal 30 s plus spécifique.", source:"Grimaldi" },
+      { id:"fader_add_r", nom:"FADER-R / ADD-R (résistés)", discrimine:["gluteal_tendinopathy"] },
+      { id:"piriforme_actif", nom:"Test du piriforme actif / étirement assis", discrimine:["deep_gluteal_piriforme"],
+        precision:"Piriforme actif Se ≈78% / Sp ≈80% ; étirement assis Se ≈52% / Sp ≈90% (une étude).", source:"Martin 2014" }
+    ],
+
+    // Test de dépistage non rattaché à une entité (sert le drapeau fracture)
+    TEST_SCREEN: { id:"fulcrum_hop", nom:"Fulcrum test + appui/saut monopodal", siRep:"douleur_appui_impact",
+      precision:"Dépistage fracture de fatigue du col. ⚠️ Radiographie souvent normale au début → IRM si suspicion." },
+
+    DRAPEAUX_ROUGES: [
+      { id:"fracture_col_femoral", libelle:"Suspicion de fracture de fatigue du col fémoral", si:{douleur_appui_impact:true},
+        conduite:"Décharge + IRM (radiographie souvent normale au début). RED-S et pic de charge = facteurs aggravants." },
+      { id:"hernie_vraie", libelle:"Suspicion de hernie inguinale/fémorale vraie", si:{tumefaction_inguinale:true},
+        conduite:"Examen ciblé + avis chirurgical." },
+      { id:"avulsion_apophysaire", libelle:"Suspicion d'avulsion apophysaire", si:{debut_contraction_explosive:true,age:"adolescent"},
+        conduite:"Radiographie. Fréquent chez l'adolescent sportif." },
+      { id:"epiphysiolyse", libelle:"Suspicion d'épiphysiolyse fémorale supérieure (SCFE)", si:{age:"adolescent",localisation:"profond_intra"},
+        conduite:"Urgence orthopédique. Radiographie hanche/bassin." },
+      { id:"infection_articulaire", libelle:"Suspicion d'arthrite septique / infection", si:{signes_systemiques:true},
+        conduite:"Avis médical urgent (urgences)." },
+      { id:"tumeur_osseuse", libelle:"Douleur non mécanique + signes généraux", si:{douleur_nocturne_repos:true,signes_systemiques:true},
+        conduite:"Imagerie + avis médical (éliminer cause tumorale / inflammatoire)." },
+      { id:"origine_lombaire_radiculaire", libelle:"Possible origine rachidienne / radiculaire", si:{irradiation_jambe:true},
+        conduite:"Examiner le rachis lombaire et éliminer une sciatique discogène." },
+      { id:"cause_intrapelvienne", libelle:"Possible cause intrapelvienne (non MSK)", si:{douleur_cyclique_urogenital:true},
+        conduite:"Orienter vers un avis médical (urologique / gynécologique)." }
+    ]
+  }
+  // , genou: { … même format … }   <-- ajouter ici les autres régions
+};
+
+/* =====================================================================
+   2) MOTEUR — générique (indépendant de la région)
+   ===================================================================== */
+let regionId = "hanche_aine";
+let R = REGIONS[regionId];
+let rep = {};                       // réponses { questionId: valeur }
+
+const qIndex = {};                  // accès rapide aux questions
+function reindex(){ R.QUESTIONS.forEach(q=>qIndex[q.id]=q); }
+
+// Une valeur correspond-elle à l'attendu ? (gère bool, string, tableaux)
+function matchVal(v, exp){
+  if(v===undefined) return false;
+  if(Array.isArray(exp)) return exp.some(e=>matchVal(v,e));
+  if(Array.isArray(v))   return v.includes(exp);
+  return v===exp;
+}
+// Toutes les clés de la condition sont-elles satisfaites ? (ET logique)
+function condOK(cond){ return Object.entries(cond).every(([q,e])=>matchVal(rep[q],e)); }
+
+function estVisible(q){ return !q.condition || condOK(q.condition); }
+
+// Libellé lisible d'une réponse (pour la transparence "pourquoi")
+function labelRep(qid,val){
+  const q=qIndex[qid]; if(!q) return qid;
+  if(q.type==="oui_non") return q.texte.replace(/\s*\?$/,"")+(val?" : oui":" : non");
+  const o=(q.options||[]).find(o=>o.valeur===val);
+  return o?o.label:String(val);
+}
+function signesCondition(si){
+  const out=[];
+  for(const [qid,exp] of Object.entries(si)){
+    (Array.isArray(exp)?exp:[exp]).forEach(e=>out.push(labelRep(qid,e)));
+  }
+  return out;
+}
+
+function bandePour(score,B){
+  if(score>=B.forte) return "forte";
+  if(score>=B.moderee) return "moderee";
+  if(score>=1) return "faible";
+  return null;
+}
+
+function classement(){
+  return R.HYPOTHESES.map(h=>{
+    let score=0; const why=[];
+    h.indices.forEach(i=>{ if(condOK(i.si)){ score+=i.poids; why.push(...signesCondition(i.si)); }});
+    return {...h, score, why:[...new Set(why)], bande:bandePour(score,R.BANDES)};
+  }).filter(h=>h.bande).sort((a,b)=>b.score-a.score);
+}
+
+function testsProposes(rang){
+  let retenues = rang.filter(h=>h.score>=R.BANDES.moderee).map(h=>h.id);
+  if(!retenues.length) retenues = rang.slice(0,2).map(h=>h.id);
+  const liste = R.TESTS.filter(t=>t.discrimine.some(id=>retenues.includes(id)));
+  if(R.TEST_SCREEN && rep[R.TEST_SCREEN.siRep]===true) liste.push({...R.TEST_SCREEN, screen:true});
+  return liste;
+}
+
+function drapeauxActifs(){ return R.DRAPEAUX_ROUGES.filter(d=>condOK(d.si)); }
+
+/* ---------- Rendu ---------- */
+const elQ=document.getElementById("questions");
+const elR=document.getElementById("resultats");
+const elProg=document.getElementById("prog");
+
+function renderQuestions(){
+  const visibles=R.QUESTIONS.filter(estVisible);
+  const repondues=visibles.filter(q=>rep[q.id]!==undefined && (!Array.isArray(rep[q.id])||rep[q.id].length)).length;
+  elProg.textContent = repondues+" / "+visibles.length+" renseignées";
+  elQ.innerHTML = visibles.map(q=>{
+    const cur=rep[q.id];
+    const opts=(q.type==="oui_non"
+      ? [{valeur:"true",label:"Oui"},{valeur:"false",label:"Non"}]
+      : q.options
+    ).map(o=>{
+      let actif;
+      if(q.type==="choix_multiple") actif=Array.isArray(cur)&&cur.includes(o.valeur);
+      else if(q.type==="oui_non")  actif=(cur===(o.valeur==="true"));
+      else                          actif=cur===o.valeur;
+      const noClass=(q.type==="oui_non"&&o.valeur==="false"&&actif)?" no":"";
+      return `<button class="pill${actif?" actif":""}${noClass}" data-q="${q.id}" data-v="${o.valeur}" data-t="${q.type}">${o.label}</button>`;
+    }).join("");
+    return `<div class="q"><div class="q-txt">${q.texte}${q.aide?`<div class="q-aide">${q.aide}</div>`:""}</div><div class="opts">${opts}</div></div>`;
+  }).join("");
+}
+
+function renderResultats(){
+  if(!Object.keys(rep).length){
+    elR.innerHTML=`<div class="empty">Réponds aux questions à gauche : le bilan se construit en direct.</div>`;
+    return;
+  }
+  const flags=drapeauxActifs();
+  const rang=classement();
+  const tests=testsProposes(rang);
+  let html="";
+
+  flags.forEach(f=>{ html+=`<div class="flag"><div class="t">${f.libelle}</div><div class="c">${f.conduite}</div></div>`; });
+
+  html+=`<div class="block-lbl">Hypothèses, par cohérence</div>`;
+  if(!rang.length){ html+=`<div class="empty" style="padding:12px 0">Pas encore assez d'éléments.</div>`; }
+  else html+=rang.map(h=>`
+    <div class="hyp">
+      <div class="hyp-top">
+        <span class="band b-${h.bande}">${h.bande}</span>
+        <div><div class="hyp-nom">${h.nom}</div><div class="hyp-quad">${h.quadrant} · score ${h.score}</div></div>
+      </div>
+      ${h.why.length?`<div class="why">${h.why.map(w=>`<span>${w}</span>`).join("")}</div>`:""}
+    </div>`).join("");
+
+  if(tests.length){
+    html+=`<div class="block-lbl">Tests à réaliser pour départager</div>`;
+    html+=tests.map(t=>`
+      <div class="test${t.screen?" screen":""}">
+        <div class="test-nom">${t.nom}</div>
+        ${t.precision?`<div class="test-meta">${t.precision}</div>`:""}
+      </div>`).join("");
+  }
+  elR.innerHTML=html;
+}
+
+function render(){ renderQuestions(); renderResultats(); }
+
+/* ---------- Interactions ---------- */
+elQ.addEventListener("click",e=>{
+  const b=e.target.closest(".pill"); if(!b) return;
+  const {q,v,t}=b.dataset;
+  if(t==="choix_multiple"){
+    const arr=Array.isArray(rep[q])?[...rep[q]]:[];
+    const i=arr.indexOf(v); i>=0?arr.splice(i,1):arr.push(v);
+    rep[q]=arr.length?arr:undefined;
+  } else if(t==="oui_non"){
+    const bool=(v==="true");
+    rep[q]=(rep[q]===bool)?undefined:bool;     // re-clic = désélection
+  } else {
+    rep[q]=(rep[q]===v)?undefined:v;
+  }
+  // nettoyage : si une question devient invisible, on oublie sa réponse
+  R.QUESTIONS.forEach(qq=>{ if(qq.condition && !condOK(qq.condition)) delete rep[qq.id]; });
+  render();
+});
+
+document.getElementById("reset").addEventListener("click",()=>{ rep={}; render(); });
+document.getElementById("sel").addEventListener("change",e=>{
+  if(!e.target.value) return;
+  regionId=e.target.value; R=REGIONS[regionId]; rep={}; reindex(); render();
+});
+
+reindex(); render();
+</script>
