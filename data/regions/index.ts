@@ -10,6 +10,7 @@ import { hancheAine } from "./hanche-aine";
 import { genou } from "./genou";
 import { chevillePied } from "./cheville-pied";
 import { cuisse } from "./cuisse";
+import { epaule } from "./epaule";
 
 export interface EntreeRegion {
   id: string;
@@ -23,6 +24,7 @@ export const REGIONS: Record<string, Region> = {
   genou: genou,
   cheville_pied: chevillePied,
   cuisse: cuisse,
+  epaule: epaule,
 };
 
 /** Ordre d'affichage du sélecteur (régions à venir incluses, désactivées). */
@@ -31,7 +33,7 @@ export const REGIONS_MENU: { id: string; nom: string; aVenir?: boolean }[] = [
   { id: "genou", nom: genou.nom },
   { id: "cheville_pied", nom: chevillePied.nom },
   { id: "cuisse", nom: cuisse.nom },
-  { id: "epaule", nom: "Épaule — à venir", aVenir: true },
+  { id: "epaule", nom: epaule.nom },
   { id: "rachis_lombaire", nom: "Rachis lombaire — à venir", aVenir: true },
 ];
 
