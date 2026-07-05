@@ -1,40 +1,55 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const LIENS = [
+  { href: "/outil", label: "Bilan" },
+  { href: "/protocoles", label: "Protocoles" },
+  { href: "/questionnaires", label: "Questionnaires" },
+  { href: "/tests", label: "Tests" },
+  { href: "/ressources", label: "Ressources" },
+];
+
+const LIENS_MOBILE = [
   { href: "/", label: "Accueil" },
-  { href: "/outil", label: "L'outil" },
+  ...LIENS,
+  { href: "/recherche", label: "Recherche" },
   { href: "/methode", label: "Méthode & sources" },
   { href: "/mentions", label: "Mentions" },
 ];
 
 export default function SiteHeader() {
   const pathname = usePathname();
+  const router = useRouter();
   const [ouvert, setOuvert] = useState(false);
+  const [q, setQ] = useState("");
 
   const estActif = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
-  // Referme le menu mobile à chaque changement de page.
   useEffect(() => {
     setOuvert(false);
   }, [pathname]);
 
+  function lancerRecherche(e: React.FormEvent) {
+    e.preventDefault();
+    const t = q.trim();
+    router.push(t ? `/recherche?q=${encodeURIComponent(t)}` : "/recherche");
+  }
+
   return (
     <header className="site-header">
       <div className="container">
-        <Link href="/" className="brand" aria-label="Accueil — Bilan MSK">
-          <span className="mark" aria-hidden="true">B</span>
+        <Link href="/" className="brand" aria-label="Accueil — Kiné Ressources">
+          <span className="mark" aria-hidden="true">K</span>
           <span className="word">
-            Bilan MSK
-            <small>Raisonnement clinique</small>
+            Kiné Ressources
+            <small>Base de référence</small>
           </span>
         </Link>
 
-        {/* Navigation desktop */}
         <nav className="nav nav-desktop" aria-label="Navigation principale">
           {LIENS.map((l) => (
             <Link
@@ -46,12 +61,17 @@ export default function SiteHeader() {
               {l.label}
             </Link>
           ))}
-          <Link href="/outil" className="btn btn-primary nav-cta">
-            Ouvrir l&apos;outil
-          </Link>
+          <form className="nav-search" onSubmit={lancerRecherche} role="search">
+            <input
+              type="search"
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder="Rechercher…"
+              aria-label="Recherche globale"
+            />
+          </form>
         </nav>
 
-        {/* Bouton burger (mobile) */}
         <button
           type="button"
           className="nav-toggle"
@@ -66,14 +86,13 @@ export default function SiteHeader() {
         </button>
       </div>
 
-      {/* Menu mobile déroulant */}
       <nav
         id="menu-mobile"
         className={`mobile-menu${ouvert ? " open" : ""}`}
         aria-label="Navigation mobile"
       >
         <div className="container">
-          {LIENS.map((l) => (
+          {LIENS_MOBILE.map((l) => (
             <Link
               key={l.href}
               href={l.href}
@@ -83,9 +102,6 @@ export default function SiteHeader() {
               {l.label}
             </Link>
           ))}
-          <Link href="/outil" className="btn btn-primary" style={{ marginTop: 8, justifyContent: "center" }}>
-            Ouvrir l&apos;outil
-          </Link>
         </div>
       </nav>
     </header>
