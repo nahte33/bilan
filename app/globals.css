@@ -349,4 +349,83 @@ select { font: inherit; font-size: 14px; padding: 9px 12px; border: 1px solid va
 .nav-search input { font: inherit; font-size: 13.5px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); color: var(--ink); width: 180px; }
 @media (max-width: 980px) { .nav-search { display: none; } }
 
-@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+/* =============================================================================
+   COUCHE iOS PREMIUM — surcharge (fond doux, grands arrondis, springboard)
+   ============================================================================= */
+body {
+  background: #F2F3F5;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", system-ui, sans-serif;
+  letter-spacing: -0.006em;
+}
+
+/* Header plus léger et translucide (effet iOS) */
+.site-header { background: rgba(242, 243, 245, 0.72); backdrop-filter: saturate(180%) blur(20px); border-bottom-color: rgba(20, 32, 42, 0.06); }
+.brand .word, .brand .mark { font-family: -apple-system, "Inter", sans-serif; }
+.brand .mark { border-radius: 10px; }
+.nav-link { border-radius: 10px; }
+.nav-search input { border-radius: 12px; }
+.nav-toggle { border-radius: 12px; }
+
+/* Boutons plus arrondis */
+.btn { border-radius: 14px; }
+
+/* ---------- Accueil : springboard de cartes ---------- */
+.home { max-width: 1140px; margin: 0 auto; padding: 32px 22px 90px; }
+.home-head { margin-bottom: 26px; }
+.home-eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); font-weight: 600; margin: 0 0 8px; }
+.home-title { font-size: clamp(28px, 4.4vw, 40px); font-weight: 600; letter-spacing: -0.025em; margin: 0 0 20px; color: var(--ink); line-height: 1.05; }
+.home-search {
+  display: flex; align-items: center; gap: 10px; width: 100%; max-width: 560px;
+  background: #fff; border: 1px solid rgba(20, 32, 42, .06); border-radius: 16px; padding: 14px 18px;
+  color: var(--soft); text-decoration: none; font-size: 14.5px;
+  box-shadow: 0 1px 2px rgba(20, 32, 42, .04); transition: box-shadow .16s, transform .12s;
+}
+.home-search:hover { box-shadow: 0 10px 30px rgba(20, 32, 42, .09); transform: translateY(-1px); }
+.home-search:active { transform: scale(.99); }
+.hs-ic { font-size: 18px; color: var(--color-teal); }
+
+.springboard { display: grid; grid-template-columns: repeat(auto-fill, minmax(232px, 1fr)); gap: 16px; }
+@media (max-width: 540px) { .springboard { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
+
+.app-card {
+  position: relative; display: flex; flex-direction: column; gap: 13px;
+  background: #fff; border: 1px solid rgba(20, 32, 42, .045); border-radius: 24px; padding: 20px;
+  text-decoration: none; color: var(--ink); overflow: hidden;
+  box-shadow: 0 1px 2px rgba(20, 32, 42, .05), 0 10px 28px rgba(20, 32, 42, .055);
+  transition: transform .2s cubic-bezier(.2, .7, .2, 1), box-shadow .2s;
+  animation: cardIn .5s both; animation-delay: calc(var(--i, 0) * 38ms);
+}
+.app-card:hover { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(20, 32, 42, .09), 0 26px 56px rgba(20, 32, 42, .12); }
+.app-card:active { transform: scale(.972); }
+.app-card:focus-visible { outline: 2px solid var(--accent, var(--teal)); outline-offset: 2px; }
+.app-tile {
+  width: 54px; height: 54px; border-radius: 16px; display: grid; place-items: center; font-size: 25px; color: #fff;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--accent) 78%, white), var(--accent));
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--accent) 38%, transparent), inset 0 1px 0 rgba(255, 255, 255, .4);
+}
+.app-body { display: flex; flex-direction: column; gap: 5px; }
+.app-name { font-weight: 600; font-size: 16.5px; letter-spacing: -0.015em; display: flex; align-items: center; gap: 8px; }
+.app-count { font-family: var(--font-mono); font-size: 11px; font-weight: 500; color: var(--accent); background: color-mix(in srgb, var(--accent) 13%, white); padding: 2px 8px; border-radius: 999px; }
+.app-desc { font-size: 13px; color: var(--soft); line-height: 1.5; }
+.app-chev { position: absolute; top: 24px; right: 20px; color: #C6CED4; font-size: 22px; line-height: 1; font-weight: 300; }
+@keyframes cardIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+/* ---------- Pages de module : arrondis & surfaces plus douces ---------- */
+.wrap { padding-top: 24px; }
+.recherche-input { border-radius: 16px; border-color: rgba(20, 32, 42, .08); }
+.facette { border-radius: 999px; border-color: rgba(20, 32, 42, .08); }
+.fiche { border-radius: 22px; border-color: rgba(20, 32, 42, .05); box-shadow: 0 1px 2px rgba(20, 32, 42, .04), 0 12px 30px rgba(20, 32, 42, .05); }
+.fiche-titre { letter-spacing: -0.015em; }
+.card { border-radius: 22px; border-color: rgba(20, 32, 42, .05); }
+.module-card { border-radius: 22px; border-color: rgba(20, 32, 42, .05); }
+.module-card .g { border-radius: 14px; }
+.callout { border-radius: 14px; }
+.panel { border-radius: 18px; border-color: rgba(20, 32, 42, .05); }
+.pill { border-radius: 999px; }
+select, .reset { border-radius: 12px; }
+.badge { border-radius: 8px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; scroll-behavior: auto !important; }
+  .app-card { animation: none; }
+}

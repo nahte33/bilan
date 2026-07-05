@@ -1,6 +1,6 @@
 /* =============================================================================
    REGISTRE DES MODULES DE LA PLATEFORME
-   Source unique pour la navigation, l'accueil et le hub Ressources.
+   Source unique pour la navigation, l'accueil (springboard) et le hub Ressources.
    ============================================================================= */
 import { REGIONS_MENU } from "@/data/regions";
 import { PROTOCOLES } from "@/data/protocoles";
@@ -19,8 +19,10 @@ export interface ModuleInfo {
   nom: string;
   href: string;
   description: string;
-  /** Glyphe simple (pas d'icône lourde). */
+  /** Glyphe simple (rendu dans la tuile façon icône d'app). */
   glyphe: string;
+  /** Couleur d'accent de la tuile (dégradé duotone). */
+  accent: string;
   /** Nombre d'entrées (indicatif). */
   count: number;
   /** Mis en avant dans la navigation principale. */
@@ -35,9 +37,9 @@ export const MODULES: ModuleInfo[] = [
     id: "bilan",
     nom: "Aide au bilan",
     href: "/outil",
-    description:
-      "Anamnèse adaptative → hypothèses par cohérence → tests → drapeaux rouges.",
+    description: "Anamnèse adaptative, hypothèses par cohérence, tests et drapeaux rouges.",
     glyphe: "◎",
+    accent: "#0E8C86",
     count: nbRegions,
     principal: true,
     categorie: "clinique",
@@ -48,6 +50,7 @@ export const MODULES: ModuleInfo[] = [
     href: "/protocoles",
     description: "Protocoles de rééducation publiés : phases, critères, dosage.",
     glyphe: "❯",
+    accent: "#4F6DDE",
     count: PROTOCOLES.length,
     principal: true,
     categorie: "clinique",
@@ -56,8 +59,9 @@ export const MODULES: ModuleInfo[] = [
     id: "questionnaires",
     nom: "Questionnaires",
     href: "/questionnaires",
-    description: "PROMs et auto-questionnaires : scoring, MCID, copyright, sources.",
+    description: "PROMs validés : scoring, MCID, statut copyright, sources.",
     glyphe: "▤",
+    accent: "#7A5AF8",
     count: QUESTIONNAIRES.length,
     principal: true,
     categorie: "clinique",
@@ -66,8 +70,9 @@ export const MODULES: ModuleInfo[] = [
     id: "tests",
     nom: "Tests cliniques",
     href: "/tests",
-    description: "Bibliothèque de tests : technique, Se/Sp, rule-in / rule-out.",
+    description: "Technique, sensibilité / spécificité, rule-in / rule-out.",
     glyphe: "✚",
+    accent: "#2E8BD0",
     count: bibliothequeTests().length,
     principal: true,
     categorie: "clinique",
@@ -78,6 +83,7 @@ export const MODULES: ModuleInfo[] = [
     href: "/drapeaux",
     description: "Signes d'alerte par région et population, conduite à tenir.",
     glyphe: "⚑",
+    accent: "#D65745",
     count: DRAPEAUX.length,
     categorie: "clinique",
   },
@@ -87,15 +93,17 @@ export const MODULES: ModuleInfo[] = [
     href: "/exercices",
     description: "Exercices par région et phase, dosage sourcé quand publié.",
     glyphe: "▷",
+    accent: "#2FA36B",
     count: EXERCICES.length,
     categorie: "clinique",
   },
   {
     id: "normes",
-    nom: "Normes & références",
+    nom: "Normes",
     href: "/normes",
     description: "Goniométrie, marche, équilibre, force : valeurs de référence.",
     glyphe: "±",
+    accent: "#159AA8",
     count: NORMES.length,
     categorie: "clinique",
   },
@@ -105,6 +113,7 @@ export const MODULES: ModuleInfo[] = [
     href: "/anatomie",
     description: "Dermatomes, myotomes, réflexes : repères d'examen neuro.",
     glyphe: "⋔",
+    accent: "#9B5DE5",
     count: ANATOMIE.length,
     categorie: "clinique",
   },
@@ -114,6 +123,7 @@ export const MODULES: ModuleInfo[] = [
     href: "/ngap",
     description: "Lettres-clés, actes, règles de cumul (France).",
     glyphe: "€",
+    accent: "#C6892A",
     count: NGAP.length,
     categorie: "pratique",
   },
@@ -123,6 +133,7 @@ export const MODULES: ModuleInfo[] = [
     href: "/legal",
     description: "Compétences, accès direct, déontologie, RGPD (France).",
     glyphe: "§",
+    accent: "#5B6B7B",
     count: LEGAL.length,
     categorie: "pratique",
   },
@@ -132,6 +143,7 @@ export const MODULES: ModuleInfo[] = [
     href: "/glossaire",
     description: "Se/Sp, LR, MCID, NNT… la lecture critique en clair.",
     glyphe: "∴",
+    accent: "#C9508A",
     count: GLOSSAIRE.length,
     categorie: "pratique",
   },
