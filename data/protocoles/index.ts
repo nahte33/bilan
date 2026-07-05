@@ -216,4 +216,106 @@ export const PROTOCOLES: Protocole[] = [
       { label: "Campbell AJ et al. BMJ 1997 (Otago)", pubmedId: "9366737" },
     ],
   },
+  {
+    id: "capsulite_epaule",
+    nom: "Capsulite rétractile (épaule gelée) — prise en charge par phases",
+    regions: ["epaule"],
+    pathologie: "Capsulite rétractile / épaule gelée",
+    populations: ["adulte_msk"],
+    resume:
+      "Prise en charge guidée par l'irritabilité (recommandations de pratique) : la rééducation est adaptée à la phase douloureuse puis d'enraidissement, sans forcer en phase très irritable.",
+    phases: [
+      {
+        nom: "Phase douloureuse (haute irritabilité)",
+        objectifs: ["Contrôler la douleur", "Préserver les amplitudes accessibles sans les forcer"],
+        contenu: ["Éducation, gestion de la douleur", "Mobilité douce dans l'amplitude indolore", "Éviter les étirements agressifs"],
+        criteresProgression: ["Baisse de l'irritabilité (douleur nocturne, douleur avant la fin d'amplitude)"],
+      },
+      {
+        nom: "Phase d'enraidissement (irritabilité modérée/basse)",
+        objectifs: ["Récupérer les amplitudes", "Restaurer la fonction"],
+        contenu: ["Mobilisations et étirements progressifs", "Techniques de thérapie manuelle", "Renforcement progressif"],
+        criteresProgression: ["Gain d'amplitude, tolérance à l'étirement"],
+      },
+    ],
+    precautions: ["Adapter l'intensité à l'irritabilité ; rechercher un diabète associé (facteur de risque)."],
+    sources: [
+      { label: "Kelley MJ et al. J Orthop Sports Phys Ther 2013 (CPG épaule gelée)", pubmedId: "23636125" },
+    ],
+  },
+  {
+    id: "coiffe_conservateur",
+    nom: "Tendinopathie / conflit de coiffe — programme d'exercices (non opératoire)",
+    regions: ["epaule"],
+    pathologie: "Conflit sous-acromial / tendinopathie de coiffe",
+    populations: ["adulte_msk", "sportif"],
+    resume:
+      "L'exercice a un effet significatif sur la douleur et la fonction ; la thérapie manuelle augmente l'effet de l'exercice ; un programme à domicile encadré équivaut à un programme supervisé.",
+    phases: [
+      {
+        nom: "Programme d'exercices progressif",
+        objectifs: ["Réduire la douleur", "Améliorer la fonction et le contrôle scapulo-huméral"],
+        contenu: [
+          "Renforcement de la coiffe et des stabilisateurs de la scapula",
+          "Progression en charge et en amplitude",
+          "Thérapie manuelle en complément si utile",
+          "Programme à domicile encadré",
+        ],
+        criteresProgression: ["Diminution de la douleur, amélioration fonctionnelle"],
+      },
+    ],
+    sources: [
+      { label: "Kuhn JE. J Shoulder Elbow Surg 2009 (revue systématique + protocole)", pubmedId: "18835532" },
+    ],
+  },
+  {
+    id: "pfp_exercice",
+    nom: "Syndrome fémoro-patellaire — exercice (hanche + genou)",
+    regions: ["genou"],
+    pathologie: "Syndrome douloureux fémoro-patellaire",
+    populations: ["adulte_msk", "sportif"],
+    resume:
+      "L'exercice est recommandé, en combinant renforcement de la hanche (abducteurs/rotateurs externes) et du genou (quadriceps), selon les recommandations de pratique.",
+    phases: [
+      {
+        nom: "Renforcement hanche + genou",
+        objectifs: ["Réduire la douleur antérieure de genou", "Améliorer le contrôle du membre inférieur"],
+        contenu: [
+          "Renforcement des abducteurs et rotateurs externes de hanche",
+          "Renforcement du quadriceps",
+          "Exercices combinés hanche+genou > genou isolé",
+          "Éventuellement : taping, thérapie combinée, orthèses selon le cas",
+        ],
+        criteresProgression: ["Contrôle du valgus dynamique, tolérance à la charge"],
+      },
+    ],
+    sources: [
+      { label: "Willy RW et al. J Orthop Sports Phys Ther 2019 (CPG douleur fémoro-patellaire)", pubmedId: "31475628" },
+    ],
+  },
+  {
+    id: "ischio_askling",
+    nom: "Rééducation des lésions ischio-jambières — protocole d'allongement (Askling L-protocol)",
+    regions: ["cuisse"],
+    pathologie: "Lésion aiguë des ischio-jambiers",
+    populations: ["sportif"],
+    resume:
+      "Un protocole mettant l'accent sur des exercices en position d'allongement (charge excentrique en amplitude) a été associé à un retour au sport plus rapide qu'un protocole conventionnel.",
+    phases: [
+      {
+        nom: "Programme « lengthening »",
+        objectifs: ["Récupérer force et longueur en toute sécurité", "Réduire le délai de retour au sport"],
+        contenu: [
+          "Trois exercices ciblant les ischio-jambiers en position d'allongement",
+          "Progression selon la douleur et la tolérance",
+          "Critères de reprise avant retour au sport",
+        ],
+        criteresProgression: ["Force et absence de douleur à l'étirement/contraction avant reprise"],
+      },
+    ],
+    precautions: ["Distinguer les lésions de type sprint et de type étirement ; individualiser."],
+    sources: [
+      { label: "Askling CM et al. Br J Sports Med 2013", pubmedId: "23536466" },
+    ],
+  },
 ];

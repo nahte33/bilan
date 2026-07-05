@@ -25,6 +25,77 @@ function toSources(source?: string): Source[] {
   return source.split(";").map((s) => ({ label: s.trim() }));
 }
 
+/* -----------------------------------------------------------------------------
+   Tests cliniques "manuels" — règles de décision & tests validés, non rattachés
+   au moteur du bilan. Se/Sp vérifiées via PubMed (PMID/DOI cités).
+   --------------------------------------------------------------------------- */
+export const TESTS_MANUELS: TestClinique[] = [
+  {
+    id: "ottawa_cheville",
+    nom: "Règles d'Ottawa (cheville / médio-pied)",
+    regions: ["cheville_pied"],
+    cible: "Exclure une fracture (indication de radiographie)",
+    technique:
+      "Radiographie indiquée s'il existe une douleur malléolaire/médio-pied AVEC douleur à la palpation osseuse des zones définies OU incapacité de faire 4 pas.",
+    precision:
+      "Sensibilité proche de 100 % pour exclure une fracture (LR− ≈ 0,08) ; spécificité modeste. Réduit de 30–40 % les radiographies inutiles.",
+    interpretation: "Excellent test d'exclusion (rule-out) : si négatif, fracture très improbable.",
+    sources: [{ label: "Bachmann LM et al. BMJ 2003 (méta-analyse) · DOI 10.1136/bmj.326.7386.417 · PMID 12595378" }],
+  },
+  {
+    id: "canadian_cspine",
+    nom: "Canadian C-Spine Rule (rachis cervical, traumatisme)",
+    regions: ["rachis_cervical"],
+    cible: "Exclure une lésion cervicale cliniquement importante",
+    technique:
+      "Algorithme : facteurs à haut risque (âge ≥ 65, mécanisme dangereux, paresthésies) → imagerie ; sinon facteurs à bas risque permettant d'évaluer la mobilité ; puis rotation active 45° G/D.",
+    precision: "Sensibilité 100 % (IC 98–100 %), spécificité 42,5 % chez le patient traumatisé alerte et stable.",
+    interpretation: "Règle de décision très sensible pour sélectionner les radiographies (rule-out).",
+    sources: [{ label: "Stiell IG et al. JAMA 2001 · DOI 10.1001/jama.286.15.1841 · PMID 11597285" }],
+  },
+  {
+    id: "ultt_a",
+    nom: "Test de tension neurale du membre supérieur A (ULTT A / ULNT médian)",
+    regions: ["rachis_cervical", "poignet_main"],
+    cible: "Radiculopathie cervicale (composante neurale)",
+    technique: "Mise en tension séquentielle du nerf médian ; reproduction des symptômes du membre supérieur.",
+    precision:
+      "Meilleur test isolé pour ÉLIMINER une radiculopathie cervicale (haute sensibilité). Un cluster de 4 items (ULTT A, rotation < 60°, Spurling, distraction) donne un LR+ ≈ 30.",
+    interpretation: "Négatif → rend la radiculopathie improbable (rule-out). Cluster positif → fort argument rule-in.",
+    sources: [{ label: "Wainner RS et al. Spine 2003 · DOI 10.1097/00007632-200301010-00014 · PMID 12544957" }],
+  },
+  {
+    id: "slr_lasegue",
+    nom: "Signe de Lasègue / Straight Leg Raise (SLR)",
+    regions: ["rachis_lombaire"],
+    cible: "Hernie discale / radiculopathie lombaire",
+    technique: "Élévation passive du membre inférieur tendu ; reproduction d'une douleur radiculaire.",
+    precision: "Sensibilité ≈ 0,91, spécificité ≈ 0,26 (méta-analyse, chirurgie comme référence).",
+    interpretation: "Sensible mais peu spécifique → bon pour ÉLIMINER (rule-out) une hernie symptomatique.",
+    sources: [{ label: "Devillé WL et al. Spine 2000 (méta-analyse) · DOI 10.1097/00007632-200005010-00016 · PMID 10788860" }],
+  },
+  {
+    id: "cross_slr",
+    nom: "SLR croisé (crossed straight leg raise)",
+    regions: ["rachis_lombaire"],
+    cible: "Hernie discale lombaire",
+    technique: "L'élévation du membre sain reproduit la douleur du côté atteint.",
+    precision: "Sensibilité ≈ 0,29, spécificité ≈ 0,88 (méta-analyse).",
+    interpretation: "Peu sensible mais spécifique → bon pour CONFIRMER (rule-in) une hernie.",
+    sources: [{ label: "Devillé WL et al. Spine 2000 · DOI 10.1097/00007632-200005010-00016 · PMID 10788860" }],
+  },
+  {
+    id: "thessaly",
+    nom: "Test de Thessaly (20° de flexion)",
+    regions: ["genou"],
+    cible: "Lésion méniscale",
+    technique: "Appui monopodal, genou fléchi à 20°, rotations internes/externes du tronc ; reproduction d'une gêne/blocage sur l'interligne.",
+    precision: "Exactitude diagnostique ≈ 94 % (ménisque médial) et ≈ 96 % (ménisque latéral) dans l'étude princeps.",
+    interpretation: "Test de débrouillage de première ligne pour les lésions méniscales (valeurs à confirmer, une étude princeps).",
+    sources: [{ label: "Karachalios T et al. J Bone Joint Surg Am 2005 · DOI 10.2106/JBJS.D.02338 · PMID 15866956" }],
+  },
+];
+
 /** Construit la bibliothèque à partir des tests de chaque région. */
 export function bibliothequeTests(): TestClinique[] {
   const out: TestClinique[] = [];
@@ -60,5 +131,5 @@ export function bibliothequeTests(): TestClinique[] {
       });
     }
   }
-  return out;
+  return [...TESTS_MANUELS, ...out];
 }
