@@ -8,8 +8,6 @@ import {
   type DrapeauTransversal,
   type EntreeAnatomie,
   type Exercice,
-  type FicheLegale,
-  type FicheNGAP,
   type Norme,
   type Population,
   type Protocole,
@@ -73,6 +71,9 @@ export function adaptQuestionnaires(items: Questionnaire[]): { entries: FicheVM[
       sousTitre: [q.acronyme, q.domaine].filter(Boolean).join(" · "),
       badges: [{ ...copyLabel[q.copyright] }, ...popBadges(q.populations)],
       meta,
+      lien: q.urlOfficiel
+        ? { label: "Version officielle / PDF", href: q.urlOfficiel }
+        : undefined,
       sources: src(q.sources),
       aValider: q.aValider,
       facetIds: [
@@ -196,36 +197,6 @@ export function adaptExercices(items: Exercice[]): { entries: FicheVM[]; facette
     };
   });
   return { entries, facettes: facettesRegions(regs) };
-}
-
-// --------------------------------------------------------------------------
-export function adaptNGAP(items: FicheNGAP[]): { entries: FicheVM[] } {
-  return {
-    entries: items.map((f): FicheVM => ({
-      id: f.id,
-      titre: f.acte,
-      sousTitre: f.lettreCle,
-      meta: f.coefficient ? [{ k: "Coefficient", v: f.coefficient }] : undefined,
-      blocs: [{ titre: "Règles", items: f.regles }],
-      sources: src(f.sources),
-      recherche: [f.acte, f.lettreCle, ...f.regles].join(" "),
-    })),
-  };
-}
-
-// --------------------------------------------------------------------------
-export function adaptLegal(items: FicheLegale[]): { entries: FicheVM[]; facettes: Facette[] } {
-  const entries = items.map((f): FicheVM => ({
-    id: f.id,
-    titre: f.titre,
-    sousTitre: f.categorie,
-    blocs: [{ items: f.points }],
-    sources: src(f.sources),
-    facetIds: [`cat:${f.categorie}`],
-    recherche: [f.titre, f.categorie, ...f.points].join(" "),
-  }));
-  const cats = [...new Set(items.map((f) => f.categorie))];
-  return { entries, facettes: cats.map((c) => ({ id: `cat:${c}`, label: c })) };
 }
 
 // --------------------------------------------------------------------------

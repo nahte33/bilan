@@ -33,6 +33,8 @@ export interface FicheVM {
   texte?: string;
   /** Encadré d'alerte (conduite à tenir, avertissement). */
   alerte?: string;
+  /** Lien d'action principal (ex. PDF / version officielle d'un questionnaire). */
+  lien?: { label: string; href: string };
   sources?: LienSource[];
   aValider?: boolean;
   /** Identifiants de facettes pour le filtrage (régions, populations…). */

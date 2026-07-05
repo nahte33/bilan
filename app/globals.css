@@ -425,7 +425,77 @@ body {
 select, .reset { border-radius: 12px; }
 .badge { border-radius: 8px; }
 
+/* Header minimal : boutons Accueil / Rechercher */
+.hdr-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 13.5px; font-weight: 500; color: var(--ink); text-decoration: none;
+  background: var(--surface); border: 1px solid rgba(20, 32, 42, .08);
+  padding: 8px 14px; border-radius: 999px; transition: border-color .15s, transform .12s;
+}
+.hdr-btn:hover { border-color: var(--color-teal); transform: translateY(-1px); }
+.hdr-btn:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+@media (max-width: 560px) { .hdr-btn-lbl { display: none; } .hdr-btn { padding: 8px 11px; } }
+
+/* =============================================================================
+   CARTES FLIP — recto (titre) → clic → rotation 3D + détail pleine largeur
+   ============================================================================= */
+.fgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+  perspective: 1400px;
+}
+.fcard { scroll-margin-top: 84px; min-width: 0; }
+.fcard.ouverte { grid-column: 1 / -1; }
+
+.fcard-face { animation: fcardFlip .5s cubic-bezier(.2, .7, .3, 1); transform-origin: center; }
+@keyframes fcardFlip {
+  from { transform: rotateY(-90deg); opacity: .35; }
+  to { transform: rotateY(0deg); opacity: 1; }
+}
+
+.fcard-recto {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
+  width: 100%; min-height: 118px; text-align: left; cursor: pointer;
+  font: inherit; color: var(--ink);
+  background: var(--surface);
+  border: 1px solid rgba(20, 32, 42, .05);
+  border-radius: 22px 22px 22px 40px;
+  padding: 18px 18px 14px;
+  box-shadow: 0 1px 2px rgba(20, 32, 42, .04), 0 12px 30px rgba(20, 32, 42, .05);
+  transition: transform .16s, box-shadow .2s, border-color .16s;
+}
+.fcard-recto:hover { transform: translateY(-2px); border-color: var(--color-teal); box-shadow: 0 4px 10px rgba(20, 32, 42, .06), 0 18px 40px rgba(20, 32, 42, .08); }
+.fcard-recto:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+.fcard-titre { font-family: var(--font-display); font-weight: 500; font-size: 16.5px; line-height: 1.25; letter-spacing: -.01em; }
+.fcard-sous { font-size: 12px; color: var(--soft); }
+.fcard-hint { margin-top: auto; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--color-teal-deep); opacity: .75; }
+
+.fcard-verso {
+  background: var(--surface);
+  border: 1px solid rgba(20, 32, 42, .05);
+  border-radius: 22px 22px 40px 22px;
+  padding: 22px 24px;
+  box-shadow: 0 1px 2px rgba(20, 32, 42, .04), 0 16px 44px rgba(20, 32, 42, .08);
+}
+.fcard-close {
+  flex: none; width: 34px; height: 34px; border-radius: 999px; cursor: pointer;
+  font: inherit; font-size: 14px; color: var(--soft);
+  background: var(--canvas, #EFF2F5); border: none;
+  display: grid; place-items: center; transition: background .15s, color .15s;
+}
+.fcard-close:hover { background: #E3E8EC; color: var(--ink); }
+.fcard-close:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+.fcard-lien {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 14px;
+  font-size: 13.5px; font-weight: 600; color: var(--color-teal-deep);
+  background: var(--teal-bg); text-decoration: none;
+  padding: 9px 15px; border-radius: 999px; transition: background .15s;
+}
+.fcard-lien:hover { background: #D3E8E6; }
+
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; scroll-behavior: auto !important; }
   .app-card { animation: none; }
+  .fcard-face { animation: none; }
 }

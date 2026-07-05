@@ -7,8 +7,6 @@ import {
   adaptDrapeaux,
   adaptExercices,
   adaptGlossaire,
-  adaptLegal,
-  adaptNGAP,
   adaptNormes,
   adaptProtocoles,
   adaptQuestionnaires,
@@ -20,8 +18,6 @@ import { bibliothequeTests } from "@/data/tests-cliniques";
 import { DRAPEAUX } from "@/data/drapeaux";
 import { NORMES } from "@/data/normes";
 import { EXERCICES } from "@/data/exercices";
-import { NGAP } from "@/data/ngap";
-import { LEGAL } from "@/data/legal";
 import { ANATOMIE } from "@/data/anatomie";
 import { GLOSSAIRE } from "@/data/glossaire";
 
@@ -58,8 +54,6 @@ export function buildIndex(): SearchDoc[] {
     ...collect("Norme", "/normes", adaptNormes(NORMES)),
     ...collect("Exercice", "/exercices", adaptExercices(EXERCICES)),
     ...collect("Anatomie", "/anatomie", adaptAnatomie(ANATOMIE)),
-    ...collect("Cotation NGAP", "/ngap", adaptNGAP(NGAP)),
-    ...collect("Cadre légal", "/legal", adaptLegal(LEGAL)),
     ...collect("Glossaire", "/glossaire", adaptGlossaire(GLOSSAIRE)),
   ];
 }

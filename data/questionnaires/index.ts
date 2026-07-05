@@ -19,7 +19,7 @@ export const QUESTIONNAIRES: Questionnaire[] = [
     scoring: "0 = aucune douleur ; extrémité haute = douleur maximale imaginable.",
     interpretation:
       "Suivi longitudinal individuel surtout. Repères usuels EN : 1–3 légère, 4–6 modérée, 7–10 intense.",
-    mcid: "≈ 2 points (EN 0–10) / ≈ 20 mm (EVA) en douleur MSK aiguë (indicatif).",
+    mcid: "≈ 2 points (EN 0–10) / ≈ 20 mm (EVA) ; consensus lombalgie : ≈ 30 % du score initial.",
     tempsPassation: "< 1 min",
     copyright: "libre",
     sources: [
@@ -37,12 +37,14 @@ export const QUESTIONNAIRES: Questionnaire[] = [
     structure: "24 items oui/non dérivés du Sickness Impact Profile.",
     scoring: "Score 0–24 (nombre d'items cochés).",
     interpretation: "Plus le score est élevé, plus l'incapacité est importante.",
-    mcid: "≈ 2 à 5 points selon le niveau initial (indicatif).",
+    mcid: "≈ 5 points, ou ≈ 30 % du score initial (consensus Ostelo 2008).",
     tempsPassation: "≈ 5 min",
     copyright: "libre",
     acces: "rmdq.org",
+    urlOfficiel: "http://www.rmdq.org",
     sources: [
       { label: "Roland M, Morris R. Spine 1983", pubmedId: "6222486" },
+      { label: "Ostelo RW et al. Spine 2008 (consensus MCID lombalgie)", pubmedId: "18165753", doi: "10.1097/BRS.0b013e31815e3a10" },
     ],
   },
   {
@@ -56,12 +58,13 @@ export const QUESTIONNAIRES: Questionnaire[] = [
     structure: "10 sections (douleur, soins personnels, port de charge, marche…), 6 modalités chacune.",
     scoring: "Score en % (0–100). 0–20 incapacité minime, 21–40 modérée, 41–60 sévère, > 60 majeure.",
     interpretation: "Un score plus élevé = plus d'incapacité.",
-    mcid: "≈ 10 points (indicatif, dépend du contexte).",
+    mcid: "≈ 10 points, ou ≈ 30 % du score initial (consensus Ostelo 2008).",
     tempsPassation: "≈ 5 min",
     copyright: "a_verifier",
     acces: "Autorisation via Mapi Research Trust / auteurs.",
     sources: [
       { label: "Fairbank JC, Pynsent PB. Spine 2000 (ODI v2)", pubmedId: "11074683" },
+      { label: "Ostelo RW et al. Spine 2008 (consensus MCID lombalgie)", pubmedId: "18165753", doi: "10.1097/BRS.0b013e31815e3a10" },
     ],
   },
   {
@@ -97,6 +100,7 @@ export const QUESTIONNAIRES: Questionnaire[] = [
     tempsPassation: "≈ 3 min",
     copyright: "libre",
     acces: "Institute for Work & Health — dash.iwh.on.ca (usage libre, non modifiable).",
+    urlOfficiel: "https://dash.iwh.on.ca",
     sources: [
       { label: "Beaton DE et al. J Bone Joint Surg Am 2005 (QuickDASH)", pubmedId: "15866967" },
     ],
@@ -133,6 +137,7 @@ export const QUESTIONNAIRES: Questionnaire[] = [
     tempsPassation: "≈ 10 min",
     copyright: "libre",
     acces: "koos.nu (usage libre).",
+    urlOfficiel: "http://www.koos.nu",
     sources: [
       { label: "Roos EM et al. J Orthop Sports Phys Ther 1998", pubmedId: "9699158" },
     ],
@@ -150,6 +155,7 @@ export const QUESTIONNAIRES: Questionnaire[] = [
     interpretation: "Analyser par sous-échelle.",
     copyright: "libre",
     acces: "koos.nu / hoos.info (usage libre).",
+    urlOfficiel: "http://www.koos.nu",
     sources: [
       { label: "Nilsdotter AK et al. BMC Musculoskelet Disord 2003", pubmedId: "12777182" },
     ],
@@ -185,6 +191,7 @@ export const QUESTIONNAIRES: Questionnaire[] = [
     tempsPassation: "≈ 2 min",
     copyright: "libre",
     acces: "Université de Keele — usage clinique gratuit après enregistrement.",
+    urlOfficiel: "https://startback.hfac.keele.ac.uk",
     sources: [
       { label: "Hill JC et al. Arthritis Rheum 2008", pubmedId: "18438893" },
     ],
@@ -444,6 +451,7 @@ export const QUESTIONNAIRES: Questionnaire[] = [
     tempsPassation: "≈ 5–7 min",
     copyright: "libre",
     acces: "Institute for Work & Health — dash.iwh.on.ca (usage libre, non modifiable).",
+    urlOfficiel: "https://dash.iwh.on.ca",
     sources: [
       { label: "Hudak PL et al. Am J Ind Med 1996 (DASH)", pubmedId: "8773720" },
     ],

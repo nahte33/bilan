@@ -318,4 +318,177 @@ export const PROTOCOLES: Protocole[] = [
       { label: "Askling CM et al. Br J Sports Med 2013", pubmedId: "23536466" },
     ],
   },
+  {
+    id: "lombalgie_cpg",
+    nom: "Lombalgie — prise en charge par classification (recommandations JOSPT)",
+    regions: ["rachis_lombaire"],
+    pathologie: "Lombalgie aiguë, subaiguë et chronique",
+    populations: ["adulte_msk", "geriatrie"],
+    resume:
+      "Recommandations de pratique : rester actif, éducation rassurante, exercice (contrôle moteur, renforcement, endurance), thérapie manuelle en complément ; approche adaptée à la présentation clinique (classification).",
+    phases: [
+      {
+        nom: "Phase aiguë",
+        objectifs: ["Rassurer et maintenir l'activité", "Réduire la douleur"],
+        contenu: [
+          "Éducation : évolution le plus souvent favorable, rester actif",
+          "Thérapie manuelle si déficit de mobilité",
+          "Exercices en direction de préférence si pertinent",
+          "Éviter le repos strict au lit",
+        ],
+        criteresProgression: ["Reprise des activités quotidiennes"],
+      },
+      {
+        nom: "Phase subaiguë / chronique",
+        objectifs: ["Restaurer la fonction", "Prévenir la récidive et la chronicisation"],
+        contenu: [
+          "Exercices de contrôle moteur et renforcement du tronc",
+          "Exercice général / endurance (marche, vélo…)",
+          "Exposition graduée si peur du mouvement (drapeaux jaunes)",
+          "Stratifier selon le risque (ex. STarT Back)",
+        ],
+        criteresProgression: ["Amélioration fonctionnelle (RMDQ/ODI), reprise des activités"],
+      },
+    ],
+    precautions: ["Écarter les drapeaux rouges avant tout (voir module Drapeaux rouges)."],
+    sources: [
+      { label: "Delitto A et al. J Orthop Sports Phys Ther 2012 (CPG lombalgie)", pubmedId: "22466247" },
+    ],
+  },
+  {
+    id: "cervicalgie_cpg",
+    nom: "Cervicalgie — prise en charge par catégories (recommandations JOSPT, révision 2017)",
+    regions: ["rachis_cervical"],
+    pathologie: "Cervicalgie (avec ou sans irradiation), whiplash, céphalée cervicogénique",
+    populations: ["adulte_msk"],
+    resume:
+      "Recommandations de pratique : classer la cervicalgie (déficit de mobilité, troubles de coordination/whiplash, céphalée, douleur irradiante) et traiter par exercice + thérapie manuelle selon la catégorie et le stade.",
+    phases: [
+      {
+        nom: "Déficit de mobilité",
+        objectifs: ["Restaurer la mobilité cervicale et thoracique"],
+        contenu: ["Mobilisations/manipulations cervicales et thoraciques", "Exercices de mobilité et renforcement cervico-scapulaire"],
+      },
+      {
+        nom: "Troubles de coordination (whiplash)",
+        objectifs: ["Reprendre confiance et fonction", "Éviter la chronicisation"],
+        contenu: ["Éducation : rester actif, évolution favorable attendue", "Exercices progressifs (endurance, coordination)", "Exposition graduée aux activités"],
+      },
+      {
+        nom: "Douleur irradiante",
+        objectifs: ["Réduire les symptômes du membre supérieur"],
+        contenu: ["Exercices de mobilisation neurale", "Traction et exercices selon la tolérance", "Renforcement progressif"],
+      },
+    ],
+    precautions: ["Écarter drapeaux rouges (myélopathie, fracture, artère cervicale) avant traitement manuel."],
+    sources: [
+      { label: "Blanpied PR et al. J Orthop Sports Phys Ther 2017 (CPG cervicalgie)", pubmedId: "28666405" },
+    ],
+  },
+  {
+    id: "hanche_arthrose_cpg",
+    nom: "Arthrose de hanche — exercice et thérapie manuelle (recommandations JOSPT, révision 2017)",
+    regions: ["hanche_aine"],
+    pathologie: "Coxarthrose / douleur de hanche avec déficit de mobilité",
+    populations: ["adulte_msk", "geriatrie"],
+    resume:
+      "Recommandations de pratique : éducation à l'activité, exercices de renforcement et de souplesse, thérapie manuelle en complément ; l'exercice en première intention.",
+    phases: [
+      {
+        nom: "Programme d'exercices",
+        objectifs: ["Réduire douleur et raideur", "Améliorer force et fonction"],
+        contenu: [
+          "Renforcement progressif (fessiers, quadriceps)",
+          "Exercices de mobilité/souplesse de hanche",
+          "Activité aérobie adaptée (marche, vélo)",
+          "Thérapie manuelle en complément si déficit de mobilité",
+        ],
+        criteresProgression: ["Tolérance à la charge, amélioration fonctionnelle (HOOS/WOMAC)"],
+      },
+    ],
+    precautions: ["Douleur inflammatoire, boiterie fébrile ou traumatisme : avis médical."],
+    sources: [
+      { label: "Cibulka MT et al. J Orthop Sports Phys Ther 2017 (CPG hanche)", pubmedId: "28566053" },
+    ],
+  },
+  {
+    id: "rehab_respiratoire_bpco",
+    nom: "Réhabilitation respiratoire (BPCO et maladies respiratoires chroniques)",
+    regions: ["global"],
+    pathologie: "BPCO, maladies respiratoires chroniques",
+    populations: ["respiratoire", "geriatrie"],
+    resume:
+      "La réhabilitation respiratoire (entraînement à l'exercice + éducation + autogestion) améliore la dyspnée, la capacité d'exercice et la qualité de vie ; composante centrale : l'entraînement aérobie et en force.",
+    phases: [
+      {
+        nom: "Programme structuré",
+        duree: "≈ 6–12 semaines",
+        objectifs: ["Réduire la dyspnée", "Améliorer la tolérance à l'effort et la qualité de vie"],
+        contenu: [
+          "Entraînement aérobie (vélo, marche) à intensité adaptée",
+          "Renforcement des membres inférieurs et supérieurs",
+          "Éducation et autogestion (exacerbations, activité)",
+          "Évaluation par test de marche de 6 minutes avant/après",
+        ],
+        criteresProgression: ["Progression de l'intensité selon dyspnée (Borg) et tolérance"],
+      },
+    ],
+    precautions: ["Programme initié après évaluation médicale ; surveiller SpO2 et signes d'intolérance."],
+    sources: [
+      { label: "Spruit MA et al. Am J Respir Crit Care Med 2013 (ATS/ERS statement)", pubmedId: "24127811" },
+    ],
+  },
+  {
+    id: "avc_rehab",
+    nom: "Rééducation après AVC (recommandations AHA/ASA)",
+    regions: ["global"],
+    pathologie: "Accident vasculaire cérébral (phase subaiguë et chronique)",
+    populations: ["neuro", "geriatrie"],
+    resume:
+      "Rééducation intensive, orientée tâche et répétitive, débutée dès que possible dans une filière organisée ; l'entraînement de la marche, de l'équilibre et du membre supérieur orienté tâche est recommandé.",
+    phases: [
+      {
+        nom: "Principes transversaux",
+        objectifs: ["Récupération fonctionnelle maximale", "Prévention des complications et des chutes"],
+        contenu: [
+          "Entraînement orienté tâche, intensif et répétitif",
+          "Travail de l'équilibre et de la marche (dont tapis si utile)",
+          "Rééducation du membre supérieur (contrainte induite si éligible)",
+          "Prise en charge multidisciplinaire coordonnée",
+        ],
+        criteresProgression: ["Objectifs fonctionnels individualisés (marche, AVQ)"],
+      },
+    ],
+    precautions: ["Coordination médicale indispensable (risque cardiovasculaire, spasticité, héminégligence…)."],
+    sources: [
+      { label: "Winstein CJ et al. Stroke 2016 (guidelines AHA/ASA)", pubmedId: "27145936" },
+    ],
+  },
+  {
+    id: "parkinson_lsvt_big",
+    nom: "Maladie de Parkinson — entraînement en grande amplitude (LSVT-BIG)",
+    regions: ["global"],
+    pathologie: "Maladie de Parkinson (stades légers à modérés)",
+    populations: ["neuro", "geriatrie"],
+    resume:
+      "Protocole intensif d'exercices en grande amplitude (16 séances individuelles d'1 h sur 4 semaines) ayant amélioré la motricité (UPDRS-III) versus marche nordique ou exercice à domicile dans l'essai princeps.",
+    phases: [
+      {
+        nom: "Protocole LSVT-BIG",
+        duree: "4 semaines (16 × 1 h)",
+        objectifs: ["Augmenter l'amplitude des mouvements", "Améliorer la vitesse et la motricité globale"],
+        contenu: [
+          "Mouvements de grande amplitude, haute intensité",
+          "Répétition et calibration de l'effort perçu",
+          "Transfert vers les activités quotidiennes",
+          "Poursuite en autonomie après le programme",
+        ],
+        criteresProgression: ["Amplitude et qualité du mouvement dans les tâches quotidiennes"],
+      },
+    ],
+    precautions: ["Adapter aux fluctuations motrices ; coordination avec le traitement médicamenteux."],
+    sources: [
+      { label: "Ebersbach G et al. Mov Disord 2010 (essai LSVT-BIG)", pubmedId: "20669294" },
+    ],
+  },
 ];

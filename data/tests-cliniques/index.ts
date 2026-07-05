@@ -85,6 +85,18 @@ export const TESTS_MANUELS: TestClinique[] = [
     sources: [{ label: "Devillé WL et al. Spine 2000 · DOI 10.1097/00007632-200005010-00016 · PMID 10788860" }],
   },
   {
+    id: "ottawa_genou",
+    nom: "Règle d'Ottawa (genou)",
+    regions: ["genou"],
+    cible: "Exclure une fracture du genou (indication de radiographie)",
+    technique:
+      "Radiographie si l'un des critères : âge ≥ 55 ans, douleur isolée de la patella, douleur de la tête fibulaire, flexion impossible à 90°, incapacité de faire 4 pas (immédiatement et aux urgences).",
+    precision:
+      "Sensibilité groupée ≈ 99 % (IC 93–100 %) pour les fractures cliniquement significatives ; spécificité ≈ 49 % (méta-analyse, 6 études, > 4 000 patients).",
+    interpretation: "Règle négative → fracture très improbable (rule-out) ; évite des radiographies inutiles.",
+    sources: [{ label: "Bachmann LM et al. Ann Intern Med 2004 (méta-analyse) · DOI 10.7326/0003-4819-140-2-200401200-00013 · PMID 14734335" }],
+  },
+  {
     id: "thessaly",
     nom: "Test de Thessaly (20° de flexion)",
     regions: ["genou"],

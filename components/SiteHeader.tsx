@@ -1,43 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
-const LIENS = [
-  { href: "/outil", label: "Bilan" },
-  { href: "/protocoles", label: "Protocoles" },
-  { href: "/questionnaires", label: "Questionnaires" },
-  { href: "/tests", label: "Tests" },
-  { href: "/ressources", label: "Ressources" },
-];
-
-const LIENS_MOBILE = [
-  { href: "/", label: "Accueil" },
-  ...LIENS,
-  { href: "/recherche", label: "Recherche" },
-  { href: "/methode", label: "Méthode & sources" },
-  { href: "/mentions", label: "Mentions" },
-];
-
+/**
+ * Header minimal : tout se fait depuis les cartes de l'accueil.
+ * Logo = retour à l'accueil ; loupe = recherche globale.
+ */
 export default function SiteHeader() {
   const pathname = usePathname();
-  const router = useRouter();
-  const [ouvert, setOuvert] = useState(false);
-  const [q, setQ] = useState("");
-
-  const estActif = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
-
-  useEffect(() => {
-    setOuvert(false);
-  }, [pathname]);
-
-  function lancerRecherche(e: React.FormEvent) {
-    e.preventDefault();
-    const t = q.trim();
-    router.push(t ? `/recherche?q=${encodeURIComponent(t)}` : "/recherche");
-  }
+  const surAccueil = pathname === "/";
 
   return (
     <header className="site-header">
@@ -50,60 +22,19 @@ export default function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="nav nav-desktop" aria-label="Navigation principale">
-          {LIENS.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className={`nav-link${estActif(l.href) ? " actif" : ""}`}
-              aria-current={estActif(l.href) ? "page" : undefined}
-            >
-              {l.label}
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          {!surAccueil && (
+            <Link href="/" className="hdr-btn" aria-label="Retour aux cartes">
+              <span aria-hidden="true">▦</span>
+              <span className="hdr-btn-lbl">Accueil</span>
             </Link>
-          ))}
-          <form className="nav-search" onSubmit={lancerRecherche} role="search">
-            <input
-              type="search"
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
-              placeholder="Rechercher…"
-              aria-label="Recherche globale"
-            />
-          </form>
-        </nav>
-
-        <button
-          type="button"
-          className="nav-toggle"
-          aria-label={ouvert ? "Fermer le menu" : "Ouvrir le menu"}
-          aria-expanded={ouvert}
-          aria-controls="menu-mobile"
-          onClick={() => setOuvert((v) => !v)}
-        >
-          <span className={`burger${ouvert ? " ouvert" : ""}`} aria-hidden="true">
-            <span /><span /><span />
-          </span>
-        </button>
-      </div>
-
-      <nav
-        id="menu-mobile"
-        className={`mobile-menu${ouvert ? " open" : ""}`}
-        aria-label="Navigation mobile"
-      >
-        <div className="container">
-          {LIENS_MOBILE.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className={`mobile-link${estActif(l.href) ? " actif" : ""}`}
-              aria-current={estActif(l.href) ? "page" : undefined}
-            >
-              {l.label}
-            </Link>
-          ))}
+          )}
+          <Link href="/recherche" className="hdr-btn" aria-label="Recherche globale">
+            <span aria-hidden="true">⌕</span>
+            <span className="hdr-btn-lbl">Rechercher</span>
+          </Link>
         </div>
-      </nav>
+      </div>
     </header>
   );
 }

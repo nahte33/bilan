@@ -9,8 +9,6 @@ import { bibliothequeTests } from "@/data/tests-cliniques";
 import { DRAPEAUX } from "@/data/drapeaux";
 import { NORMES } from "@/data/normes";
 import { EXERCICES } from "@/data/exercices";
-import { NGAP } from "@/data/ngap";
-import { LEGAL } from "@/data/legal";
 import { ANATOMIE } from "@/data/anatomie";
 import { GLOSSAIRE } from "@/data/glossaire";
 
@@ -116,26 +114,6 @@ export const MODULES: ModuleInfo[] = [
     accent: "#9B5DE5",
     count: ANATOMIE.length,
     categorie: "clinique",
-  },
-  {
-    id: "ngap",
-    nom: "Cotation NGAP",
-    href: "/ngap",
-    description: "Lettres-clés, actes, règles de cumul (France).",
-    glyphe: "€",
-    accent: "#C6892A",
-    count: NGAP.length,
-    categorie: "pratique",
-  },
-  {
-    id: "legal",
-    nom: "Cadre légal",
-    href: "/legal",
-    description: "Compétences, accès direct, déontologie, RGPD (France).",
-    glyphe: "§",
-    accent: "#5B6B7B",
-    count: LEGAL.length,
-    categorie: "pratique",
   },
   {
     id: "glossaire",

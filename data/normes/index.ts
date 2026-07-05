@@ -83,9 +83,37 @@ export const NORMES: Norme[] = [
     nom: "Force de préhension (dynamomètre)",
     categorie: "Force",
     valeurs: [
-      { parametre: "Valeurs normatives", valeur: "Dépendent fortement de l'âge et du sexe — se référer aux tables normatives", precision: "comparer au côté controlatéral" },
+      { parametre: "Profil vie entière", valeur: "Pic vers 30–40 ans puis déclin progressif", precision: "normes centilées par âge et sexe" },
+      { parametre: "Pic moyen (données britanniques)", valeur: "Hommes ≈ 51 kg · Femmes ≈ 31 kg", precision: "à comparer aux centiles et au côté controlatéral" },
     ],
-    sources: [{ label: "Bohannon RW — valeurs normatives de grip strength" }],
-    aValider: true,
+    sources: [
+      { label: "Dodds RM et al. PLoS One 2014 (normes vie entière, 12 études UK)", pubmedId: "25474696", doi: "10.1371/journal.pone.0113637" },
+    ],
+  },
+  {
+    id: "tm6_predit",
+    nom: "Test de marche de 6 minutes — valeurs prédites",
+    categorie: "Marche",
+    valeurs: [
+      { parametre: "Adultes sains 40–80 ans (médianes)", valeur: "Hommes ≈ 576 m · Femmes ≈ 494 m" },
+      { parametre: "Équations de référence", valeur: "Fonction de l'âge, la taille, le poids et le sexe", precision: "utiliser l'équation d'Enright-Sherrill pour la valeur prédite individuelle" },
+    ],
+    populations: ["respiratoire", "geriatrie"],
+    sources: [
+      { label: "Enright PL, Sherrill DL. Am J Respir Crit Care Med 1998 (équations de référence)", pubmedId: "9817683", doi: "10.1164/ajrccm.158.5.9710086" },
+    ],
+  },
+  {
+    id: "chair_stand_30s",
+    nom: "Lever de chaise 30 secondes (30-s Chair Stand)",
+    categorie: "Force",
+    valeurs: [
+      { parametre: "Principe", valeur: "Nombre de levers complets en 30 s, bras croisés" },
+      { parametre: "Normes 60–94 ans", valeur: "Décroissantes avec l'âge (ex. ≈ 12–17 levers à 60–64 ans selon le sexe)", precision: "se référer aux tables normatives par tranche d'âge" },
+    ],
+    populations: ["geriatrie"],
+    sources: [
+      { label: "Jones CJ, Rikli RE, Beam WC. Res Q Exerc Sport 1999 (30-s chair stand, normes)", pubmedId: "10380242", doi: "10.1080/02701367.1999.10608028" },
+    ],
   },
 ];

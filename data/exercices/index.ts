@@ -55,6 +55,21 @@ export const EXERCICES: Exercice[] = [
     sources: [{ label: "Vuurberg G et al. Br J Sports Med 2018 (entorse de cheville)", pubmedId: "29514819" }],
   },
   {
+    id: "copenhagen_adduction",
+    nom: "Copenhagen adduction (adducteurs)",
+    regions: ["hanche_aine"],
+    objectif: "Renforcement excentrique des adducteurs / prévention des douleurs d'aine",
+    phases: ["Prévention", "Renforcement"],
+    description:
+      "Planche latérale, jambe supérieure en appui sur un banc ou tenue par un partenaire : élévation-abaissement contrôlé du corps par les adducteurs.",
+    dosage: "Intégré à l'échauffement (type FIFA 11+), progression de 2×6 à 3×15 selon le niveau ; le programme a réduit de 41 % les problèmes d'aine chez des footballeurs.",
+    progression: "Augmenter le bras de levier (appui genou → appui cheville), puis le volume.",
+    regression: "Version genou fléchi sur le banc (bras de levier court).",
+    sources: [
+      { label: "Harøy J et al. Br J Sports Med 2019 (essai randomisé en clusters)", pubmedId: "29891614", doi: "10.1136/bjsports-2017-098937" },
+    ],
+  },
+  {
     id: "exercice_thoracique_ext",
     nom: "Mobilité thoracique en extension",
     regions: ["rachis_thoracique", "rachis_cervical"],

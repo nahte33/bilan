@@ -26,11 +26,15 @@ export const DRAPEAUX: DrapeauTransversal[] = [
     populations: ["geriatrie", "adulte_msk", "rhumatologie"],
     signes: [
       "Traumatisme (même mineur si os fragile)",
-      "Âge élevé, corticothérapie prolongée, ostéoporose connue",
+      "Âge élevé (> 70 ans), corticothérapie prolongée, ostéoporose connue",
       "Douleur rachidienne intense d'apparition brutale",
+      "Contusion / abrasion visible (cohorte de soins primaires : la combinaison âge élevé + corticoïdes + traumatisme + contusion augmente fortement la probabilité)",
     ],
     conduite: "Avis médical + imagerie. Prudence à la mobilisation.",
-    sources: [{ label: "Downie A et al. BMJ 2013 (red flags fracture/malignité)", pubmedId: "24335669" }],
+    sources: [
+      { label: "Downie A et al. BMJ 2013 (red flags fracture/malignité)", pubmedId: "24335669" },
+      { label: "Henschke N et al. Arthritis Rheum 2009 (cohorte inception, drapeaux fracture)", pubmedId: "19790051", doi: "10.1002/art.24853" },
+    ],
   },
   {
     id: "malignite_rachis",

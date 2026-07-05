@@ -94,6 +94,8 @@ export interface Questionnaire {
   copyright: StatutCopyright;
   /** Où obtenir la version officielle (si protégé) / le texte (si libre). */
   acces?: string;
+  /** Lien direct vers le site officiel / le PDF (instruments libres uniquement). */
+  urlOfficiel?: string;
   sources: Source[];
   aValider?: boolean;
 }
@@ -178,29 +180,6 @@ export interface Exercice {
   regression?: string;
   sources: Source[];
   aValider?: boolean;
-}
-
-// ---------------------------------------------------------------------------
-// COTATION NGAP (France)
-// ---------------------------------------------------------------------------
-export interface FicheNGAP {
-  id: string;
-  acte: string;
-  lettreCle: string;
-  coefficient?: string;
-  regles: string[];
-  sources: Source[];
-}
-
-// ---------------------------------------------------------------------------
-// CADRE LÉGAL (France)
-// ---------------------------------------------------------------------------
-export interface FicheLegale {
-  id: string;
-  titre: string;
-  categorie: string;
-  points: string[];
-  sources: Source[];
 }
 
 // ---------------------------------------------------------------------------
