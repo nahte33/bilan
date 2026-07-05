@@ -161,4 +161,59 @@ export const PROTOCOLES: Protocole[] = [
       { label: "Grindem H et al. Br J Sports Med 2016 (retour au sport & re-rupture)", pubmedId: "27162233" },
     ],
   },
+  {
+    id: "glad_arthrose",
+    nom: "GLA:D — éducation + exercice (arthrose de hanche / genou)",
+    regions: ["hanche_aine", "genou"],
+    pathologie: "Arthrose de hanche ou de genou",
+    populations: ["adulte_msk", "geriatrie", "rhumatologie"],
+    resume:
+      "Programme structuré associant éducation du patient et exercice neuromusculaire supervisé, conforme aux recommandations « exercice + éducation en première intention » de l'arthrose.",
+    phases: [
+      {
+        nom: "Éducation",
+        duree: "≈ 2 séances",
+        objectifs: ["Comprendre l'arthrose", "Auto-gestion, dédramatiser l'activité"],
+        contenu: ["Sessions éducatives sur l'arthrose et son traitement", "Encouragement à l'activité physique"],
+      },
+      {
+        nom: "Exercice neuromusculaire supervisé",
+        duree: "≈ 6 semaines (≈ 12 séances)",
+        objectifs: ["Contrôle neuromusculaire", "Force et confiance dans le mouvement"],
+        contenu: ["Exercices de contrôle de la qualité du mouvement", "Progression individualisée", "Poursuite en autonomie ensuite"],
+        criteresProgression: ["Bon contrôle du mouvement avant d'augmenter la charge"],
+      },
+    ],
+    precautions: ["Approche de 1re intention ; ne dispense pas d'un avis médical si aggravation."],
+    sources: [
+      { label: "Skou ST, Roos EM. BMC Musculoskelet Disord 2017 (GLA:D)", pubmedId: "28173795" },
+    ],
+  },
+  {
+    id: "otago_chutes",
+    nom: "Otago Exercise Programme (prévention des chutes)",
+    regions: ["global"],
+    pathologie: "Prévention des chutes de la personne âgée",
+    populations: ["geriatrie"],
+    resume:
+      "Programme individualisé de renforcement des membres inférieurs et d'exercices d'équilibre, réalisé à domicile, réduisant les chutes chez les personnes âgées à risque.",
+    phases: [
+      {
+        nom: "Programme individualisé",
+        duree: "≈ 3×/semaine + marche, sur plusieurs mois",
+        objectifs: ["Renforcer les membres inférieurs", "Améliorer l'équilibre", "Réduire le risque de chute"],
+        contenu: [
+          "Exercices de force (cheville, genou, hanche) avec lest progressif",
+          "Exercices d'équilibre progressifs",
+          "Programme de marche",
+          "Progression revue lors de visites régulières",
+        ],
+        criteresProgression: ["Augmentation du lest et de la difficulté d'équilibre selon la tolérance"],
+      },
+    ],
+    precautions: ["Adapter au niveau de fragilité ; sécuriser l'environnement d'exercice."],
+    sources: [
+      { label: "Campbell AJ et al. BMJ 1997 (Otago)", pubmedId: "9366737" },
+    ],
+  },
 ];
