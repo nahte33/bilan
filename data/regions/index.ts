@@ -15,6 +15,9 @@ import { rachisLombaire } from "./rachis-lombaire";
 import { coude } from "./coude";
 import { poignetMain } from "./poignet-main";
 import { rachisCervical } from "./rachis-cervical";
+import { rachisThoracique } from "./rachis-thoracique";
+import { atm } from "./atm";
+import { vestibulaire } from "./vestibulaire";
 
 export interface EntreeRegion {
   id: string;
@@ -33,6 +36,9 @@ export const REGIONS: Record<string, Region> = {
   coude: coude,
   poignet_main: poignetMain,
   rachis_cervical: rachisCervical,
+  rachis_thoracique: rachisThoracique,
+  atm: atm,
+  vestibulaire: vestibulaire,
 };
 
 /** Ordre d'affichage du sélecteur. */
@@ -46,6 +52,9 @@ export const REGIONS_MENU: { id: string; nom: string; aVenir?: boolean }[] = [
   { id: "coude", nom: coude.nom },
   { id: "poignet_main", nom: poignetMain.nom },
   { id: "rachis_cervical", nom: rachisCervical.nom },
+  { id: "rachis_thoracique", nom: rachisThoracique.nom },
+  { id: "atm", nom: atm.nom },
+  { id: "vestibulaire", nom: vestibulaire.nom },
 ];
 
 export const REGION_DEFAUT = "hanche_aine";

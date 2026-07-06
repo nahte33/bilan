@@ -18,6 +18,9 @@ const REGION_MAP: Record<string, RegionCorporelle> = {
   coude: "coude",
   poignet_main: "poignet_main",
   rachis_cervical: "rachis_cervical",
+  rachis_thoracique: "rachis_thoracique",
+  atm: "atm",
+  vestibulaire: "vestibulaire",
 };
 
 function toSources(source?: string): Source[] {

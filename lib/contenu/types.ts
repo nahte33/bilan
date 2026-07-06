@@ -51,6 +51,8 @@ export type RegionCorporelle =
   | "cuisse"
   | "genou"
   | "cheville_pied"
+  | "atm"
+  | "vestibulaire"
   | "tronc_bassin"
   | "global";
 
@@ -65,6 +67,8 @@ export const REGIONS_CORPS: Record<RegionCorporelle, string> = {
   cuisse: "Cuisse",
   genou: "Genou",
   cheville_pied: "Cheville / pied",
+  atm: "ATM (mâchoire)",
+  vestibulaire: "Vertiges & équilibre",
   tronc_bassin: "Tronc / bassin",
   global: "Global",
 };
