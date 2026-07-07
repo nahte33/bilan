@@ -491,4 +491,80 @@ export const PROTOCOLES: Protocole[] = [
       { label: "Ebersbach G et al. Mov Disord 2010 (essai LSVT-BIG)", pubmedId: "20669294" },
     ],
   },
+  {
+    id: "canal_carpien_cpg",
+    nom: "Syndrome du canal carpien — prise en charge non chirurgicale (CPG JOSPT 2019)",
+    regions: ["poignet_main"],
+    pathologie: "Syndrome du canal carpien",
+    populations: ["adulte_msk"],
+    resume:
+      "Recommandations de pratique : orthèse nocturne de poignet, mobilisation neurodynamique du nerf médian et éducation ; la kinésithérapie peut retarder ou éviter la chirurgie dans les formes légères à modérées.",
+    phases: [
+      {
+        nom: "Prise en charge conservatrice",
+        objectifs: ["Réduire les paresthésies nocturnes", "Améliorer la fonction de la main"],
+        contenu: [
+          "Orthèse de poignet en position neutre (surtout la nuit)",
+          "Techniques de glissement neural du nerf médian (neurodynamique)",
+          "Mobilisation du poignet/carpe, éducation ergonomique",
+          "Réévaluation ; orientation chirurgicale si déficit moteur ou échec",
+        ],
+        criteresProgression: ["Diminution des symptômes nocturnes et amélioration fonctionnelle"],
+      },
+    ],
+    precautions: ["Déficit moteur (amyotrophie thénarienne) / atteinte sévère : avis chirurgical."],
+    sources: [
+      { label: "Erickson M et al. J Orthop Sports Phys Ther 2019 (CPG canal carpien)", pubmedId: "31039690" },
+    ],
+  },
+  {
+    id: "epicondylalgie_laterale_cpg",
+    nom: "Épicondylalgie latérale — exercice + thérapie manuelle (CPG JOSPT 2022)",
+    regions: ["coude"],
+    pathologie: "Épicondylalgie latérale (tennis elbow)",
+    populations: ["adulte_msk", "sportif"],
+    resume:
+      "Recommandations de pratique : exercice avec charge progressive des extenseurs du poignet (dont travail excentrique/isométrique), thérapie manuelle en complément, éducation et gestion de charge.",
+    phases: [
+      {
+        nom: "Renforcement progressif",
+        objectifs: ["Réduire la douleur", "Restaurer la force de préhension et la fonction"],
+        contenu: [
+          "Renforcement progressif des extenseurs du poignet (isométrique → excentrique/lourd et lent)",
+          "Thérapie manuelle du coude/poignet en complément",
+          "Éducation, adaptation des gestes et de la charge",
+          "Orthèse (bracelet) possible en appoint symptomatique",
+        ],
+        criteresProgression: ["Tolérance à la charge, amélioration de la préhension indolore"],
+      },
+    ],
+    sources: [
+      { label: "Lucado AM et al. J Orthop Sports Phys Ther 2022 (CPG épicondylalgie latérale)", pubmedId: "36453071" },
+    ],
+  },
+  {
+    id: "achilleen_cpg",
+    nom: "Tendinopathie achilléenne — recommandations de pratique (CPG JOSPT 2018)",
+    regions: ["cheville_pied"],
+    pathologie: "Tendinopathie du tendon d'Achille (corporéale et insertionnelle)",
+    populations: ["adulte_msk", "sportif"],
+    resume:
+      "Recommandations de pratique : l'exercice avec mise en charge du tendon (excentrique ou lourd et lent) est le traitement de référence ; éducation et gestion de charge ; distinguer atteinte corporéale et insertionnelle (amplitude limitée si insertionnelle).",
+    phases: [
+      {
+        nom: "Mise en charge du tendon",
+        objectifs: ["Réduire la douleur", "Restaurer la capacité de charge et la fonction"],
+        contenu: [
+          "Programme excentrique (Alfredson) ou Heavy Slow Resistance",
+          "Progression de charge guidée par la douleur (≤ 3-5/10, se calmant au repos)",
+          "Éducation et gestion de la charge d'entraînement",
+          "Atteinte insertionnelle : limiter la dorsiflexion (éviter la descente sous le plan)",
+        ],
+        criteresProgression: ["Tolérance à la charge sans exacerbation > 24 h ; suivi par VISA-A"],
+      },
+    ],
+    sources: [
+      { label: "Martin RL et al. J Orthop Sports Phys Ther 2018 (CPG tendinopathie achilléenne)", pubmedId: "29712543" },
+    ],
+  },
 ];

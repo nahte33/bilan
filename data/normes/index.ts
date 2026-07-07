@@ -91,6 +91,19 @@ export const NORMES: Norme[] = [
     ],
   },
   {
+    id: "berg_seuil",
+    nom: "Échelle d'équilibre de Berg — lecture du risque de chute",
+    categorie: "Équilibre",
+    valeurs: [
+      { parametre: "Score", valeur: "0–56 (14 tâches cotées 0–4)" },
+      { parametre: "Risque de chute", valeur: "Le risque augmente nettement sous ≈ 45/56", precision: "un score bas isolé prédit mal la chute individuelle — à intégrer au contexte (Muir 2008)" },
+    ],
+    populations: ["geriatrie", "neuro"],
+    sources: [
+      { label: "Muir SW et al. Phys Ther 2008 (valeur prédictive du Berg)", pubmedId: "18218822", doi: "10.2522/ptj.20070251" },
+    ],
+  },
+  {
     id: "tm6_predit",
     nom: "Test de marche de 6 minutes — valeurs prédites",
     categorie: "Marche",

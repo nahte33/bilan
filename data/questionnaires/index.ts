@@ -630,4 +630,20 @@ export const QUESTIONNAIRES: Questionnaire[] = [
       { label: "Mahoney FI, Barthel DW. Md State Med J 1965", pubmedId: "14258950" },
     ],
   },
+  {
+    id: "gmfcs",
+    nom: "Gross Motor Function Classification System (paralysie cérébrale)",
+    acronyme: "GMFCS",
+    domaine: "Fonction motrice globale (pédiatrie)",
+    populations: ["pediatrie", "neuro"],
+    indication: "Classer la fonction motrice globale de l'enfant atteint de paralysie cérébrale, selon la mobilité auto-initiée.",
+    structure: "Classification ordinale en 5 niveaux (I à V), par tranches d'âge ; version étendue et révisée (GMFCS-E&R).",
+    scoring: "Niveau I (marche sans limitation) → niveau V (transport en fauteuil, contrôle postural limité).",
+    interpretation: "Niveau stable et prédictif du pronostic moteur ; oriente les objectifs de rééducation et l'appareillage.",
+    copyright: "a_verifier",
+    acces: "CanChild (Université McMaster) — usage clinique gratuit, ne pas modifier.",
+    sources: [
+      { label: "Palisano R et al. Dev Med Child Neurol 1997 (GMFCS)", pubmedId: "9183258" },
+    ],
+  },
 ];
