@@ -808,4 +808,57 @@ export const PROTOCOLES: Protocole[] = [
       { label: "Kise NJ et al. BMJ 2016 (exercice vs méniscectomie, non-infériorité)", pubmedId: "27440192" },
     ],
   },
+  {
+    id: "gtps_charge",
+    nom: "Tendinopathie fessière (GTPS) — éducation + exercice de charge (essai LEAP)",
+    regions: ["hanche_aine"],
+    pathologie: "Tendinopathie glutéale / syndrome douloureux du grand trochanter (GTPS)",
+    populations: ["adulte_msk", "geriatrie"],
+    resume:
+      "Essai randomisé (LEAP) : un programme d'éducation + exercices de charge des abducteurs a donné de meilleurs résultats sur la douleur et le handicap à 8 semaines que l'infiltration de corticoïde ou l'attente, avec un bénéfice maintenu à 52 semaines.",
+    phases: [
+      {
+        nom: "Éducation + exercice de charge",
+        duree: "≈ 8 semaines encadrées",
+        objectifs: ["Réduire la douleur latérale de hanche", "Restaurer la fonction des abducteurs"],
+        contenu: [
+          "Éducation : gestion de charge, éviter les postures d'adduction/compression (croiser les jambes, appui en adduction)",
+          "Exercices isométriques puis de charge progressive des abducteurs de hanche",
+          "Correction des patterns de mouvement (contrôle du bassin)",
+          "Progression fonctionnelle",
+        ],
+        criteresProgression: ["Diminution de la douleur à l'appui/couché sur le côté, amélioration fonctionnelle"],
+      },
+    ],
+    precautions: ["Éviter les étirements comprimant le tendon contre le trochanter (adduction) en phase irritable."],
+    sources: [
+      { label: "Mellor R et al. BMJ 2018 (essai LEAP)", pubmedId: "29720374" },
+    ],
+  },
+  {
+    id: "fibromyalgie_exercice",
+    nom: "Fibromyalgie — exercice aérobie (revue Cochrane)",
+    regions: ["global"],
+    pathologie: "Fibromyalgie",
+    populations: ["rhumatologie", "adulte_msk"],
+    resume:
+      "Revue Cochrane : l'exercice aérobie améliore probablement la qualité de vie, réduit la douleur et améliore la fonction physique dans la fibromyalgie, avec peu d'effets indésirables. Débuter à faible intensité et progresser lentement.",
+    phases: [
+      {
+        nom: "Programme aérobie progressif",
+        objectifs: ["Réduire la douleur et la fatigue", "Améliorer la fonction et la qualité de vie"],
+        contenu: [
+          "Aérobie d'intensité faible à modérée (marche, vélo, aquatique)",
+          "Démarrage très progressif (éviter les poussées douloureuses)",
+          "Régularité privilégiée sur l'intensité",
+          "Association possible à du renforcement doux et à l'éducation",
+        ],
+        criteresProgression: ["Tolérance sans exacerbation durable ; progression lente du volume"],
+      },
+    ],
+    precautions: ["Adapter à la variabilité symptomatique ; approche bio-psycho-sociale et éducative."],
+    sources: [
+      { label: "Bidonde J et al. Cochrane Database Syst Rev 2017 (exercice aérobie & fibromyalgie)", pubmedId: "28636204" },
+    ],
+  },
 ];

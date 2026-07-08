@@ -273,6 +273,16 @@ export const TESTS_MANUELS: TestClinique[] = [
     sources: [{ label: "Kibler WB et al. Br J Sports Med 2013 (consensus dyskinésie scapulaire) · PMID 23580420" }],
   },
   {
+    id: "y_balance_sebt",
+    nom: "Star Excursion / Y-Balance Test (contrôle postural dynamique)",
+    regions: ["cheville_pied", "genou", "global"],
+    cible: "Contrôle postural dynamique / risque de blessure du membre inférieur",
+    technique: "En appui unipodal, atteinte maximale du pied libre dans 3 directions (antérieure, postéro-médiale, postéro-latérale) ; normaliser par la longueur de jambe et comparer les côtés.",
+    precision: "Fiabilité intra/inter-examinateurs bonne à excellente (ICC souvent > 0,85). Une asymétrie antérieure ≥ 4 cm et un score composite bas ont été associés à un surrisque de blessure du membre inférieur (données de cohortes).",
+    interpretation: "Outil de mesure de la performance/asymétrie (dépistage, suivi de réathlétisation), non diagnostique.",
+    sources: [{ label: "Gribble PA et al. J Athl Train 2012 (recommandations SEBT) · DOI 10.4085/1062-6050-47.3.08 · PMID 22892416" }],
+  },
+  {
     id: "beighton",
     nom: "Score de Beighton (hypermobilité articulaire généralisée)",
     regions: ["global"],
