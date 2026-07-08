@@ -648,4 +648,32 @@ export const PROTOCOLES: Protocole[] = [
       { label: "Vleeming A et al. Eur Spine J 2008 (guidelines pelvic girdle pain)", pubmedId: "18259783" },
     ],
   },
+  {
+    id: "bronchiolite_kine",
+    nom: "Kinésithérapie respiratoire dans la bronchiolite du nourrisson",
+    regions: ["global"],
+    pathologie: "Bronchiolite aiguë du nourrisson (1er épisode)",
+    populations: ["pediatrie", "respiratoire"],
+    resume:
+      "Point de preuve important : chez le nourrisson HOSPITALISÉ pour une 1re bronchiolite, la kinésithérapie respiratoire (augmentation du flux expiratoire + toux provoquée) n'a PAS accéléré la guérison dans un essai randomisé multicentrique, avec plus de vomissements et de déstabilisations transitoires. La prise en charge reste principalement de soutien.",
+    phases: [
+      {
+        nom: "Ce que dit la preuve",
+        objectifs: ["Éviter les gestes sans bénéfice démontré", "Prioriser la surveillance et le soutien"],
+        contenu: [
+          "En hospitalier : l'AFE + toux provoquée n'améliore pas le délai de guérison (essai randomisé, n=496)",
+          "Effets indésirables plus fréquents pendant la manœuvre (vomissements, déstabilisation respiratoire transitoire)",
+          "Prise en charge de soutien : désobstruction rhinopharyngée, hydratation, oxygène si besoin",
+          "En ambulatoire / hors atopie : données insuffisantes — évaluer au cas par cas",
+        ],
+        criteresProgression: ["Surveiller la tolérance (SpO2, alimentation, signes de lutte)"],
+      },
+    ],
+    precautions: [
+      "Signes de gravité (apnées, détresse respiratoire, mauvaise prise alimentaire, déshydratation) : avis médical/hospitalisation urgente.",
+    ],
+    sources: [
+      { label: "Gajdos V et al. PLoS Med 2010 (essai randomisé multicentrique)", pubmedId: "20927359" },
+    ],
+  },
 ];
