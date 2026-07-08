@@ -117,6 +117,46 @@ export const NORMES: Norme[] = [
     ],
   },
   {
+    id: "spirometrie_gli",
+    nom: "Spirométrie — valeurs de référence (GLI-2012)",
+    categorie: "Respiratoire",
+    valeurs: [
+      { parametre: "Équations de référence", valeur: "Global Lung Initiative 2012 (âge 3–95 ans, multi-ethnique)", precision: "exprimer les résultats en z-scores / centiles, pas en simple % du prédit" },
+      { parametre: "Limite inférieure de la normale (LLN)", valeur: "≈ 5e centile (z-score −1,64)" },
+      { parametre: "Trouble obstructif", valeur: "VEMS/CVF < LLN", precision: "GOLD utilise le rapport fixe < 0,70 ; les équations GLI affinent selon l'âge" },
+    ],
+    populations: ["respiratoire", "geriatrie", "pediatrie"],
+    sources: [
+      { label: "Quanjer PH et al. Eur Respir J 2012 (GLI-2012)", pubmedId: "22743675", doi: "10.1183/09031936.00080312" },
+    ],
+  },
+  {
+    id: "functional_reach",
+    nom: "Functional Reach Test (portée fonctionnelle)",
+    categorie: "Équilibre",
+    valeurs: [
+      { parametre: "Principe", valeur: "Distance maximale d'atteinte antérieure bras tendu, en appui debout stable" },
+      { parametre: "Seuil de risque de chute", valeur: "≈ ≤ 15-25 cm associé à un surrisque de chute chez la personne âgée", precision: "diminue avec l'âge ; à intégrer au contexte (Duncan 1990)" },
+    ],
+    populations: ["geriatrie", "neuro"],
+    sources: [
+      { label: "Duncan PW et al. J Gerontol 1990 (Functional Reach)", pubmedId: "2229941", doi: "10.1093/geronj/45.6.M192" },
+    ],
+  },
+  {
+    id: "appui_unipodal",
+    nom: "Appui unipodal (single-leg stance) — valeurs normatives",
+    categorie: "Équilibre",
+    valeurs: [
+      { parametre: "Principe", valeur: "Durée de maintien en appui unipodal, yeux ouverts (et yeux fermés)" },
+      { parametre: "Normes par âge", valeur: "Décroissantes avec l'âge (ex. yeux ouverts ≈ 30 s jusqu'à 60 ans, puis baisse marquée)", precision: "se référer aux tables normatives par tranche d'âge (Springer 2007)" },
+    ],
+    populations: ["geriatrie", "neuro", "adulte_msk"],
+    sources: [
+      { label: "Springer BA et al. J Geriatr Phys Ther 2007 (normes appui unipodal)", pubmedId: "19839175", doi: "10.1519/00139143-200704000-00003" },
+    ],
+  },
+  {
     id: "chair_stand_30s",
     nom: "Lever de chaise 30 secondes (30-s Chair Stand)",
     categorie: "Force",
