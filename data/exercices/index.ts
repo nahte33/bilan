@@ -80,4 +80,76 @@ export const EXERCICES: Exercice[] = [
     sources: [{ label: "Exercice usuel de mobilité — à individualiser" }],
     aValider: true,
   },
+  {
+    id: "isometrique_patellaire",
+    nom: "Isométrique du quadriceps (Spanish squat / extension) — antalgie tendineuse",
+    regions: ["genou"],
+    objectif: "Réduire la douleur de la tendinopathie patellaire et charger le tendon",
+    phases: ["Antalgie", "Renforcement"],
+    description:
+      "Contractions isométriques du quadriceps à charge élevée (ex. Spanish squat contre une sangle, ou extension isométrique à ≈ 60° de flexion).",
+    dosage: "≈ 5 × 45 s à intensité élevée (≈ 70 % MVC), avec repos ; effet antalgique immédiat rapporté sur la tendinopathie patellaire.",
+    progression: "Vers du renforcement lourd et lent (HSR) quand la douleur le permet.",
+    sources: [
+      { label: "Rio E et al. Br J Sports Med 2015 (isométrique et douleur du tendon patellaire)", pubmedId: "25979840", doi: "10.1136/bjsports-2014-094386" },
+    ],
+  },
+  {
+    id: "excentrique_epicondyle",
+    nom: "Excentrique des extenseurs du poignet (tennis elbow)",
+    regions: ["coude"],
+    objectif: "Charge excentrique des extenseurs du poignet dans l'épicondylalgie latérale",
+    phases: ["Renforcement"],
+    description:
+      "Excentrique des extenseurs du poignet (ex. avec un FlexBar en torsion, ou haltère léger) : extension assistée puis retour excentrique lent contrôlé.",
+    dosage: "≈ 3 × 15, 1×/jour, progression de charge selon la tolérance ; amélioration significative de la douleur et de la fonction vs prise en charge standard.",
+    progression: "Augmenter la charge/résistance quand indolore.",
+    sources: [
+      { label: "Tyler TF et al. J Shoulder Elbow Surg 2010 (excentrique, épicondylalgie latérale)", pubmedId: "20579907", doi: "10.1016/j.jse.2010.04.041" },
+    ],
+  },
+  {
+    id: "renforcement_abducteurs_gtps",
+    nom: "Renforcement des abducteurs de hanche (GTPS)",
+    regions: ["hanche_aine"],
+    objectif: "Charge progressive des abducteurs dans la tendinopathie fessière",
+    phases: ["Renforcement"],
+    description:
+      "Progression : isométrique d'abduction (hanche neutre, éviter l'adduction) → abduction en charge (pont fessier, appui unipodal contrôlé, abduction debout).",
+    dosage: "Selon le programme LEAP : exercices quotidiens/réguliers avec éducation à la gestion de charge, progression sur ≈ 8 semaines.",
+    progression: "Augmenter la charge et l'exigence de contrôle du bassin.",
+    regression: "Isométriques en décharge, amplitude réduite.",
+    sources: [
+      { label: "Mellor R et al. BMJ 2018 (essai LEAP, éducation + exercice GTPS)", pubmedId: "29720374", doi: "10.1136/bmj.k1662" },
+    ],
+  },
+  {
+    id: "gaze_stabilization",
+    nom: "Stabilisation du regard (VOR ×1) — rééducation vestibulaire",
+    regions: ["global"],
+    objectif: "Améliorer le réflexe vestibulo-oculaire dans l'hypofonction vestibulaire",
+    phases: ["Rééducation vestibulaire"],
+    description:
+      "Fixer une cible immobile tenue à bout de bras et tourner la tête horizontalement (puis verticalement) en gardant la cible nette (VOR ×1). Progression VOR ×2 (cible et tête en sens opposés).",
+    dosage: "≈ 3-5 ×/jour, quelques minutes ; progression en vitesse, durée, environnement (fond chargé, debout).",
+    progression: "Augmenter la vitesse/durée, passer en appui debout puis en marche ; introduire VOR ×2.",
+    sources: [
+      { label: "Hall CD et al. J Neurol Phys Ther 2016 (CPG rééducation vestibulaire)", pubmedId: "26913496" },
+    ],
+  },
+  {
+    id: "sit_to_stand_renfo",
+    nom: "Lever de chaise renforcé (sit-to-stand)",
+    regions: ["global"],
+    objectif: "Renforcement fonctionnel des membres inférieurs (gériatrie, prévention des chutes)",
+    phases: ["Renforcement", "Prévention"],
+    description:
+      "Passages assis-debout répétés à partir d'une chaise, sans les mains si possible ; contrôle de l'alignement du genou.",
+    dosage: "Séries de 8–12 répétitions ; s'intègre aux programmes de renforcement type Otago avec progression (lest, hauteur d'assise).",
+    progression: "Diminuer la hauteur d'assise, ajouter du lest, ralentir la descente.",
+    regression: "Assise plus haute, appui des mains.",
+    sources: [
+      { label: "Campbell AJ et al. BMJ 1997 (Otago, renforcement MI et équilibre)", pubmedId: "9366737" },
+    ],
+  },
 ];
