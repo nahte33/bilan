@@ -567,4 +567,85 @@ export const PROTOCOLES: Protocole[] = [
       { label: "Martin RL et al. J Orthop Sports Phys Ther 2018 (CPG tendinopathie achilléenne)", pubmedId: "29712543" },
     ],
   },
+  {
+    id: "torticolis_congenital_cpg",
+    nom: "Torticolis musculaire congénital — prise en charge (CPG APTA pédiatrie, révision 2018)",
+    regions: ["rachis_cervical"],
+    pathologie: "Torticolis musculaire congénital du nourrisson",
+    populations: ["pediatrie"],
+    resume:
+      "Recommandations de pratique : dépistage précoce, étirements passifs doux du sterno-cléido-mastoïdien, encouragement du mouvement actif (positionnement, portage, jeu), éducation des parents ; orientation médicale si asymétrie atypique ou absence de progrès.",
+    phases: [
+      {
+        nom: "Prise en charge de 1re intention",
+        objectifs: ["Restaurer la mobilité cervicale passive et active", "Prévenir/limiter la plagiocéphalie associée"],
+        contenu: [
+          "Étirements passifs doux et fréquents du SCM (rotation/inclinaison)",
+          "Stimulation du mouvement actif vers le côté limité (jeu, portage, positionnement)",
+          "Temps d'éveil sur le ventre supervisé (tummy time)",
+          "Éducation et implication des parents à chaque étape",
+        ],
+        criteresProgression: ["Symétrie des rotations passives et actives, tenue de tête symétrique"],
+      },
+    ],
+    precautions: [
+      "Orientation médicale si : masse cervicale atypique, limitation sévère, signes neurologiques, absence d'amélioration après 4–6 semaines de traitement bien conduit.",
+    ],
+    sources: [
+      { label: "Kaplan SL et al. Pediatr Phys Ther 2018 (CPG torticolis congénital)", pubmedId: "30277962" },
+    ],
+  },
+  {
+    id: "pfmt_incontinence",
+    nom: "Rééducation périnéale (PFMT) — incontinence urinaire de la femme",
+    regions: ["tronc_bassin"],
+    pathologie: "Incontinence urinaire d'effort, d'urgenturie ou mixte",
+    populations: ["perinatal", "adulte_msk", "geriatrie"],
+    resume:
+      "L'entraînement des muscles du plancher pelvien (PFMT) est le traitement de 1re intention de l'incontinence urinaire d'effort et mixte de la femme : les femmes traitées rapportent plus souvent une guérison ou amélioration et une meilleure qualité de vie (revue Cochrane).",
+    phases: [
+      {
+        nom: "Programme d'entraînement du plancher pelvien",
+        duree: "≥ 3 mois",
+        objectifs: ["Restaurer force, endurance et coordination périnéales", "Réduire les fuites et améliorer la qualité de vie"],
+        contenu: [
+          "Vérifier la contraction correcte (éviter les compensations abdominales/fessières)",
+          "Exercices de contraction périnéale progressifs (force + endurance + verrouillage à l'effort)",
+          "Programme quotidien supervisé régulièrement",
+          "Suivi par questionnaire validé (ex. ICIQ-UI SF)",
+        ],
+        criteresProgression: ["Amélioration des fuites (calendrier mictionnel, ICIQ) et de la force périnéale"],
+      },
+    ],
+    precautions: ["Signes urinaires atypiques (hématurie, infections répétées, douleur pelvienne inexpliquée) : avis médical."],
+    sources: [
+      { label: "Dumoulin C et al. Cochrane Database Syst Rev 2018 (PFMT vs pas de traitement)", pubmedId: "30288727" },
+    ],
+  },
+  {
+    id: "pelvic_girdle_pain",
+    nom: "Douleur de ceinture pelvienne (grossesse / post-partum) — guidelines européennes",
+    regions: ["tronc_bassin", "rachis_lombaire"],
+    pathologie: "Pelvic girdle pain (douleur pelvienne postérieure liée à la grossesse)",
+    populations: ["perinatal"],
+    resume:
+      "Guidelines européennes : diagnostic par tests spécifiques (ASLR, provocation pelvienne postérieure), rassurer et encourager l'activité, exercices individualisés ; ceinture pelvienne en appoint symptomatique.",
+    phases: [
+      {
+        nom: "Prise en charge",
+        objectifs: ["Réduire la douleur et maintenir l'activité", "Restaurer le transfert de charge lombo-pelvien"],
+        contenu: [
+          "Information et réassurance (évolution le plus souvent favorable en post-partum)",
+          "Exercices individualisés de stabilisation lombo-pelvienne",
+          "Adaptation des activités quotidiennes ; ceinture pelvienne en appoint si soulagement",
+          "Suivi par ASLR et échelle de douleur",
+        ],
+        criteresProgression: ["Amélioration de l'ASLR et des activités quotidiennes"],
+      },
+    ],
+    precautions: ["Douleur non mécanique, fièvre, signes urinaires ou neurologiques : avis médical."],
+    sources: [
+      { label: "Vleeming A et al. Eur Spine J 2008 (guidelines pelvic girdle pain)", pubmedId: "18259783" },
+    ],
+  },
 ];

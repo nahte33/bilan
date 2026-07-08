@@ -646,4 +646,22 @@ export const QUESTIONNAIRES: Questionnaire[] = [
       { label: "Palisano R et al. Dev Med Child Neurol 1997 (GMFCS)", pubmedId: "9183258" },
     ],
   },
+  {
+    id: "iciq_ui_sf",
+    nom: "International Consultation on Incontinence Questionnaire — Urinary Incontinence Short Form",
+    acronyme: "ICIQ-UI SF",
+    domaine: "Incontinence urinaire",
+    populations: ["perinatal", "geriatrie", "adulte_msk"],
+    regions: ["tronc_bassin"],
+    indication: "Évaluer la fréquence, la quantité et le retentissement des fuites urinaires, et le suivi de la rééducation périnéale.",
+    structure: "3 items scorés + 1 item d'auto-diagnostic non scoré (fréquence, quantité, impact sur la vie quotidienne).",
+    scoring: "Score 0–21 ; un score plus élevé = incontinence plus sévère.",
+    interpretation: "Repères de sévérité : léger (1–5), modéré (6–12), sévère (13–18), très sévère (19–21).",
+    tempsPassation: "≈ 2 min",
+    copyright: "a_verifier",
+    acces: "Groupe ICIQ (Bristol Urological Institute) — enregistrement pour usage.",
+    sources: [
+      { label: "Avery K et al. Neurourol Urodyn 2004 (ICIQ-UI SF)", pubmedId: "15227649" },
+    ],
+  },
 ];
