@@ -676,4 +676,136 @@ export const PROTOCOLES: Protocole[] = [
       { label: "Gajdos V et al. PLoS Med 2010 (essai randomisé multicentrique)", pubmedId: "20927359" },
     ],
   },
+  {
+    id: "fasciite_plantaire_cpg",
+    nom: "Fasciite plantaire (talalgie plantaire) — recommandations de pratique (CPG JOSPT 2014)",
+    regions: ["cheville_pied"],
+    pathologie: "Fasciopathie / fasciite plantaire",
+    populations: ["adulte_msk", "sportif"],
+    resume:
+      "Recommandations de pratique : étirements du fascia plantaire et du triceps sural, thérapie manuelle, taping antipronateur, orthèses plantaires ; l'exercice de charge du fascia peut être ajouté. Éducation et gestion de charge.",
+    phases: [
+      {
+        nom: "Prise en charge",
+        objectifs: ["Réduire la douleur du talon", "Restaurer la marche et l'appui indolores"],
+        contenu: [
+          "Étirements spécifiques du fascia plantaire et du triceps sural",
+          "Thérapie manuelle du pied/cheville",
+          "Taping antipronateur (soulagement à court terme), orthèses plantaires",
+          "Renforcement en charge du fascia (high-load strength) possible",
+        ],
+        criteresProgression: ["Diminution de la douleur au premier pas matinal, reprise des activités"],
+      },
+    ],
+    sources: [
+      { label: "Martin RL et al. J Orthop Sports Phys Ther 2014 (CPG heel pain / plantar fasciitis)", pubmedId: "25361863" },
+    ],
+  },
+  {
+    id: "reeducation_vestibulaire_cpg",
+    nom: "Rééducation vestibulaire (hypofonction vestibulaire périphérique) — CPG APTA 2016",
+    regions: ["global"],
+    pathologie: "Hypofonction vestibulaire périphérique uni- ou bilatérale",
+    populations: ["neuro", "geriatrie"],
+    resume:
+      "Recommandations de pratique : la rééducation vestibulaire (exercices de stabilisation du regard, d'habituation et d'équilibre) est fortement recommandée dans l'hypofonction vestibulaire périphérique pour réduire les symptômes et améliorer la fonction.",
+    phases: [
+      {
+        nom: "Programme de rééducation vestibulaire",
+        objectifs: ["Améliorer la stabilité du regard", "Réduire les vertiges et améliorer l'équilibre"],
+        contenu: [
+          "Exercices de stabilisation du regard (gaze stabilization, VOR ×1/×2)",
+          "Exercices d'habituation aux mouvements provocateurs",
+          "Travail de l'équilibre et de la marche progressif",
+          "Programme à domicile encadré, progression individualisée",
+        ],
+        criteresProgression: ["Réduction des symptômes (DHI), amélioration de l'équilibre et de la marche"],
+      },
+    ],
+    precautions: ["Distinguer d'un VPPB (manœuvre de repositionnement) et d'une cause centrale (avis)."],
+    sources: [
+      { label: "Hall CD et al. J Neurol Phys Ther 2016 (CPG rééducation vestibulaire)", pubmedId: "26913496" },
+    ],
+  },
+  {
+    id: "osteoporose_exercice",
+    nom: "Exercice et ostéoporose (recommandations « Too Fit To Fracture »)",
+    regions: ["global"],
+    pathologie: "Ostéoporose / faible densité osseuse",
+    populations: ["geriatrie", "rhumatologie"],
+    resume:
+      "Recommandations consensuelles : combiner renforcement musculaire et exercices d'équilibre/prévention des chutes au quotidien ; encourager l'activité en sécurité et enseigner le contrôle du tronc (éviter les flexions rachidiennes contraintes/répétées en cas de fractures vertébrales).",
+    phases: [
+      {
+        nom: "Programme d'exercice",
+        objectifs: ["Maintenir la densité/qualité osseuse et musculaire", "Réduire le risque de chute et de fracture"],
+        contenu: [
+          "Renforcement musculaire progressif (résistance)",
+          "Exercices d'équilibre et de prévention des chutes réguliers",
+          "Éducation à la mécanique du tronc (spine-sparing) après fracture vertébrale",
+          "Activité en charge selon tolérance et niveau de risque",
+        ],
+        criteresProgression: ["Progression de la résistance et de la difficulté d'équilibre selon la tolérance"],
+      },
+    ],
+    precautions: ["Après fracture vertébrale : éviter les flexions/rotations rachidiennes chargées et répétées ; individualiser."],
+    sources: [
+      { label: "Giangregorio LM et al. Osteoporos Int 2014 (Too Fit To Fracture)", pubmedId: "24281053" },
+    ],
+  },
+  {
+    id: "cancer_exercice",
+    nom: "Activité physique et cancer (recommandations ACSM 2019)",
+    regions: ["global"],
+    pathologie: "Patients atteints ou survivants de cancer",
+    populations: ["adulte_msk", "geriatrie"],
+    resume:
+      "Recommandations de la table ronde ACSM : l'exercice (aérobie + renforcement) est sûr et améliore la fatigue liée au cancer, l'anxiété/dépression, la qualité de vie et la fonction physique. Cibles générales : ≈ 3×/semaine aérobie + 2×/semaine renforcement, adaptées.",
+    phases: [
+      {
+        nom: "Programme d'exercice adapté",
+        objectifs: ["Réduire la fatigue liée au cancer", "Améliorer force, fonction et qualité de vie"],
+        contenu: [
+          "Aérobie modéré ≈ 3×/semaine (30 min) selon tolérance",
+          "Renforcement ≈ 2×/semaine",
+          "Adaptation selon le traitement, la numération, les dispositifs et les complications",
+          "Progression individualisée et sécurisée",
+        ],
+        criteresProgression: ["Tolérance à l'effort, amélioration de la fatigue et de la fonction"],
+      },
+    ],
+    precautions: [
+      "Coordination médicale : adapter en cas de cytopénies, métastases osseuses, cardiotoxicité, neuropathie, lymphœdème.",
+    ],
+    sources: [
+      { label: "Campbell KL et al. Med Sci Sports Exerc 2019 (ACSM roundtable)", pubmedId: "31626055" },
+    ],
+  },
+  {
+    id: "menisque_degeneratif_exercice",
+    nom: "Lésion méniscale dégénérative — exercice vs méniscectomie",
+    regions: ["genou"],
+    pathologie: "Lésion méniscale dégénérative (adulte d'âge moyen, sans blocage vrai)",
+    populations: ["adulte_msk", "geriatrie"],
+    resume:
+      "Point de preuve : chez l'adulte d'âge moyen avec lésion méniscale dégénérative, un programme d'exercice supervisé de 12 semaines n'était pas inférieur à la méniscectomie arthroscopique partielle sur la fonction à 2 ans, et améliorait davantage la force. L'exercice est à privilégier en 1re intention.",
+    phases: [
+      {
+        nom: "Programme d'exercice supervisé",
+        duree: "≈ 12 semaines",
+        objectifs: ["Restaurer force, contrôle et fonction du genou", "Éviter une chirurgie non nécessaire"],
+        contenu: [
+          "Renforcement progressif du membre inférieur (quadriceps, hanche)",
+          "Contrôle neuromusculaire et exercices fonctionnels",
+          "Progression individualisée sur ~12 semaines",
+          "Éducation : évolution souvent favorable sans chirurgie",
+        ],
+        criteresProgression: ["Amélioration fonctionnelle (KOOS) et de la force"],
+      },
+    ],
+    precautions: ["Blocage mécanique vrai, genou verrouillé, signes d'atteinte traumatique aiguë : avis chirurgical."],
+    sources: [
+      { label: "Kise NJ et al. BMJ 2016 (exercice vs méniscectomie, non-infériorité)", pubmedId: "27440192" },
+    ],
+  },
 ];

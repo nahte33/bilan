@@ -273,6 +273,16 @@ export const TESTS_MANUELS: TestClinique[] = [
     sources: [{ label: "Kibler WB et al. Br J Sports Med 2013 (consensus dyskinésie scapulaire) · PMID 23580420" }],
   },
   {
+    id: "beighton",
+    nom: "Score de Beighton (hypermobilité articulaire généralisée)",
+    regions: ["global"],
+    cible: "Hypermobilité articulaire généralisée",
+    technique: "9 manœuvres : dorsiflexion des 5es doigts > 90° (2), apposition des pouces à l'avant-bras (2), hyperextension des coudes > 10° (2), des genoux > 10° (2), paumes au sol genoux tendus (1).",
+    precision: "Score 0–9 ; seuil usuel d'hypermobilité ≥ 5/9 chez l'adulte (variable selon l'âge et le sexe ; seuils plus élevés chez l'enfant). Outil de dépistage, non diagnostique d'un trouble du tissu conjonctif.",
+    interpretation: "Un score élevé oriente vers une hypermobilité ; à replacer dans le contexte clinique (critères d'Ehlers-Danlos hypermobile si besoin).",
+    sources: [{ label: "Beighton P et al. Ann Rheum Dis 1973 · DOI 10.1136/ard.32.5.413 · PMID 4751776" }],
+  },
+  {
     id: "aslr",
     nom: "Active Straight Leg Raise (ASLR) — ceinture pelvienne",
     regions: ["tronc_bassin", "rachis_lombaire"],
