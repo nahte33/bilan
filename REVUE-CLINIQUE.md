@@ -2,7 +2,7 @@
 
 > **Document généré automatiquement** depuis les modules de données (`data/regions/`).
 > Ne pas modifier à la main : éditer les modules puis régénérer
-> (`npx vite-node scripts/generate-revue.ts`). Généré le 2026-06-22.
+> (`npx vite-node scripts/generate-revue.ts`). Généré le 2026-07-08.
 
 ## À l'attention du relecteur
 
@@ -1133,5 +1133,218 @@ Source : _(à sourcer)_
 | **Suspicion de fracture cervicale (traumatisme)** | Traumatisme récent du cou (à évaluer pour une fracture) : oui | Appliquer la règle canadienne du rachis cervical ; immobiliser et imager en cas de critère à haut risque. | — |
 | **Déficit neurologique d'un membre** | Faiblesse motrice d'un membre : oui | Faiblesse motrice : examen neurologique complet + avis (radiculopathie sévère ou atteinte médullaire). | — |
 | **Douleur non mécanique + signes généraux** | Douleur nocturne / de repos permanente (non mécanique) : oui + Fièvre, altération de l'état général, perte de poids inexpliquée : oui | Imagerie + avis médical pour éliminer une cause tumorale ou infectieuse (spondylodiscite). | — |
+
+---
+
+## Rachis thoracique / dorsalgie
+
+Seuils de cohérence : **forte** ≥ 4 · **modérée** ≥ 2 · **faible** ≥ 1 (sinon écartée). 15 questions · 4 hypothèses · 3 tests · 7 drapeaux rouges.
+
+### Hypothèses et indices pondérés
+
+> Le score d'une hypothèse = somme des poids des indices dont la condition est vraie. À recalibrer cliniquement.
+
+#### Dorsalgie commune (mécanique / posturale)  _(quadrant : Rachidien)_
+
+| Signe (réponse d'anamnèse) | Poids | Source |
+|---|---|---|
+| Para-vertébrale / entre les omoplates | +3 | — |
+| Douleur reproduite par les rotations du tronc / la mise en charge du segment : oui | +2 | — |
+| Contexte postural (poste de travail, port de charges, sédentarité) : oui | +1 | — |
+| Progressive / posturale | +1 | — |
+
+#### Dysfonction costo-vertébrale / costo-transversaire  _(quadrant : Costo-vertébral)_
+
+| Signe (réponse d'anamnèse) | Poids | Source |
+|---|---|---|
+| Sur une côte / le long d'un espace intercostal | +3 | — |
+| Douleur majorée par la respiration profonde / la toux : oui | +2 | — |
+| Douleur reproduite par la palpation / pression locale : oui | +1 | — |
+| Aiguë, sur un geste / faux mouvement | +1 | — |
+
+#### Douleur pariétale antérieure (costochondrite / costo-sternale)  _(quadrant : Pariétal antérieur)_
+
+| Signe (réponse d'anamnèse) | Poids | Source |
+|---|---|---|
+| Antérieure, sternale / costo-sternale | +3 | — |
+| Douleur reproduite par la palpation / pression locale : oui | +2 | — |
+
+#### Maladie de Scheuermann (dystrophie de croissance)  _(quadrant : Rachidien)_
+
+| Signe (réponse d'anamnèse) | Poids | Source |
+|---|---|---|
+| Adolescent avec cyphose dorsale rigide et douloureuse : oui | +3 | — |
+| Para-vertébrale / entre les omoplates | +1 | — |
+| Progressive / posturale | +1 | — |
+
+### Tests proposés
+
+**Examen segmentaire thoracique + costo-vertébral**  — _départage : Dorsalgie commune (mécanique / posturale), Dysfonction costo-vertébrale / costo-transversaire_  
+Technique : Reproduction de la douleur par pression postéro-antérieure sur les épineuses/articulations costo-vertébrales, tests de rotation/inclinaison segmentaires.  
+Valeur diagnostique : Reproduction d'une douleur familière locale → argument mécanique. Fiabilité/exactitude de la palpation segmentaire limitées // TODO à sourcer/valider.  
+Source : _(non documentée / à sourcer)_
+
+**Palpation des jonctions costo-chondrales**  — _départage : Douleur pariétale antérieure (costochondrite / costo-sternale)_  
+Technique : Reproduction de la douleur à la palpation des articulations costo-sternales/costo-chondrales.  
+Valeur diagnostique : Une douleur reproduite à la palpation oriente vers une origine pariétale ; n'élimine PAS une cause viscérale associée. Se/Sp // TODO à sourcer/valider.  
+Source : _(non documentée / à sourcer)_
+
+**Examen neurologique (niveau sensitif, réflexes MI, signes médullaires)**  — _départage : —_  
+Technique : Recherche d'un niveau sensitif, de signes pyramidaux aux membres inférieurs (la moelle se termine vers L1).  
+Valeur diagnostique : Tout signe médullaire (niveau sensitif, troubles sphinctériens, syndrome pyramidal) impose un avis urgent : compression médullaire thoracique possible.  
+Source : _(non documentée / à sourcer)_
+
+### Drapeaux rouges
+
+| Drapeau | Déclencheur | Conduite | Source |
+|---|---|---|---|
+| **Suspicion d'origine cardiaque (syndrome coronarien)** | Douleur thoracique/constrictive à l'effort, irradiant bras/mâchoire, avec dyspnée ou sueurs : oui | URGENCE : douleur d'effort constrictive, irradiation bras/mâchoire, dyspnée/sueurs → appeler le 15/112. | — |
+| **Suspicion de dissection aortique** | Douleur brutale « en coup de poignard » dorsale/thoracique, très intense : oui | URGENCE : douleur brutale, déchirante, très intense → appeler le 15/112. | — |
+| **Suspicion de cause pleuro-pulmonaire** | Dyspnée, toux fébrile, crachats, ou douleur pleurale associée : oui | Dyspnée/fièvre/douleur pleurale : éliminer pneumonie, embolie pulmonaire, pneumothorax → avis médical rapide. | — |
+| **Suspicion de zona (herpès zoster)** | Douleur en bande unilatérale précédant/accompagnant une éruption vésiculeuse : oui | Douleur en bande unilatérale + éruption vésiculeuse : avis médical (traitement antiviral précoce). | — |
+| **Suspicion de fracture vertébrale** | Traumatisme (même mineur), âge > 70 ans, corticothérapie ou ostéoporose connue : oui | Traumatisme / âge élevé / corticoïdes / ostéoporose : imagerie + avis médical. Prudence à la mobilisation. | Downie 2013 DOI 10.1136/bmj.f7095 ; Henschke 2009 DOI 10.1002/art.24853 |
+| **Douleur non mécanique + signes généraux** | Douleur nocturne / de repos permanente (non mécanique) : oui + Fièvre, altération de l'état général, perte de poids, antécédent de cancer : oui | Douleur nocturne/de repos + fièvre/perte de poids/antécédent de cancer : imagerie + avis pour éliminer tumeur/infection. | Downie 2013 DOI 10.1136/bmj.f7095 |
+| **Possible cause digestive référée** | Lien avec les repas, douleur épigastrique, nausées (douleur possiblement digestive) : oui | Lien avec les repas, douleur épigastrique/nausées : orienter vers un avis médical (biliaire, pancréatique, ulcère). | — |
+
+---
+
+## ATM (mâchoire)
+
+Seuils de cohérence : **forte** ≥ 4 · **modérée** ≥ 2 · **faible** ≥ 1 (sinon écartée). 11 questions · 4 hypothèses · 2 tests · 3 drapeaux rouges.
+
+### Hypothèses et indices pondérés
+
+> Le score d'une hypothèse = somme des poids des indices dont la condition est vraie. À recalibrer cliniquement.
+
+#### Myalgie des muscles masticateurs (DTM myogène)  _(quadrant : Musculaire)_
+
+| Signe (réponse d'anamnèse) | Poids | Source |
+|---|---|---|
+| Sur les muscles (tempe, joue, masséter) | +3 | Schiffman 2014 (DC/TMD) DOI 10.11607/jop.1151 |
+| Douleur reproduite par la mastication ou le serrement des dents : oui | +2 | — |
+| Serrement / grincement des dents (bruxisme), stress : oui | +1 | — |
+| Raideur / douleur maximale au réveil : oui | +1 | — |
+
+#### Déplacement discal avec réduction  _(quadrant : Intra-articulaire)_
+
+| Signe (réponse d'anamnèse) | Poids | Source |
+|---|---|---|
+| Clic / claquement | +3 | Schiffman 2014 (DC/TMD ; Se 0,80 / Sp 0,97) DOI 10.11607/jop.1151 |
+| Déviation ou ressaut de la mâchoire pendant l'ouverture : oui | +2 | — |
+| Devant l'oreille (sur l'articulation) | +1 | — |
+
+#### Déplacement discal sans réduction (blocage)  _(quadrant : Intra-articulaire)_
+
+| Signe (réponse d'anamnèse) | Poids | Source |
+|---|---|---|
+| Blocage ou limitation de l'ouverture de la bouche : oui | +3 | — |
+| Devant l'oreille (sur l'articulation) | +1 | — |
+
+#### Arthralgie / arthrose de l'ATM  _(quadrant : Intra-articulaire)_
+
+| Signe (réponse d'anamnèse) | Poids | Source |
+|---|---|---|
+| Craquement / crépitement (sable) | +3 | Schiffman 2014 (DC/TMD) DOI 10.11607/jop.1151 |
+| Devant l'oreille (sur l'articulation) | +2 | — |
+| Douleur reproduite par la mastication ou le serrement des dents : oui | +1 | — |
+
+### Tests proposés
+
+**Examen DC/TMD : palpation musculaire/articulaire + provocation**  — _départage : Myalgie des muscles masticateurs (DTM myogène), Arthralgie / arthrose de l'ATM_  
+Technique : Reproduction de la douleur familière à la palpation des masséters/temporaux et de l'ATM, et lors des mouvements mandibulaires (ouverture, latéralités, propulsion).  
+Valeur diagnostique : Critères DC/TMD pour les DTM douloureux : Se ≥ 0,86, Sp ≥ 0,98 (fiabilité inter-examinateur excellente, kappa ≥ 0,85).  
+Source : Schiffman 2014 (DC/TMD) DOI 10.11607/jop.1151
+
+**Mesure de l'ouverture buccale + analyse des bruits**  — _départage : Déplacement discal avec réduction, Déplacement discal sans réduction (blocage)_  
+Technique : Ouverture inter-incisive (normale ≈ 40 mm) ; identification d'un clic reproductible (réduction discale) vs crépitement (arthrose) ; recherche d'un blocage.  
+Valeur diagnostique : Le clic reproductible à l'ouverture/fermeture oriente vers le déplacement discal avec réduction (DC/TMD : Se 0,80 / Sp 0,97). Une limitation marquée et un antécédent de blocage évoquent l'absence de réduction.  
+Source : Schiffman 2014 (DC/TMD) DOI 10.11607/jop.1151
+
+### Drapeaux rouges
+
+| Drapeau | Déclencheur | Conduite | Source |
+|---|---|---|---|
+| **Possible cause dentaire (odontogène)** | Douleur dentaire, dent cassée, soin dentaire récent : oui | Douleur/soin dentaire : orienter vers un avis dentaire avant d'attribuer la douleur à l'ATM. | — |
+| **Possible cause ORL** | Otalgie avec écoulement / fièvre, ou signes ORL : oui | Otalgie avec fièvre/écoulement : orienter vers un avis médical (ORL). | — |
+| **Suspicion d'artérite à cellules géantes (Horton)** | Après 50 ans : céphalée temporale récente, artère temporale douloureuse, claudication de la mâchoire, troubles visuels : oui | Urgence : après 50 ans, céphalée temporale + claudication mandibulaire + troubles visuels → avis médical immédiat (risque de cécité). | — |
+
+---
+
+## Vertiges & équilibre
+
+Seuils de cohérence : **forte** ≥ 4 · **modérée** ≥ 2 · **faible** ≥ 1 (sinon écartée). 10 questions · 5 hypothèses · 4 tests · 3 drapeaux rouges.
+
+### Hypothèses et indices pondérés
+
+> Le score d'une hypothèse = somme des poids des indices dont la condition est vraie. À recalibrer cliniquement.
+
+#### VPPB du canal postérieur  _(quadrant : Périphérique)_
+
+| Signe (réponse d'anamnèse) | Poids | Source |
+|---|---|---|
+| Changement de position de la tête (se retourner au lit, lever la tête) | +3 | Bhattacharyya 2017 (CPG VPPB) DOI 10.1177/0194599816689667 |
+| Quelques secondes (< 1 min) | +3 | — |
+| Rotatoire (l'environnement tourne) | +1 | — |
+
+#### VPPB du canal latéral (horizontal)  _(quadrant : Périphérique)_
+
+| Signe (réponse d'anamnèse) | Poids | Source |
+|---|---|---|
+| Changement de position de la tête (se retourner au lit, lever la tête) | +2 | Bhattacharyya 2017 DOI 10.1177/0194599816689667 |
+| Quelques secondes (< 1 min) | +2 | — |
+
+#### Névrite vestibulaire  _(quadrant : Périphérique)_
+
+| Signe (réponse d'anamnèse) | Poids | Source |
+|---|---|---|
+| Épisode viral récent, puis vertige intense continu : oui | +3 | — |
+| Continu, plusieurs jours | +2 | — |
+| Spontané, sans facteur positionnel | +1 | — |
+
+#### Maladie de Ménière (orientation)  _(quadrant : Périphérique)_
+
+| Signe (réponse d'anamnèse) | Poids | Source |
+|---|---|---|
+| Acouphènes et/ou baisse d'audition associés : oui | +2 | — |
+| Sensation de plénitude / pression dans l'oreille : oui | +2 | — |
+| Minutes à heures | +1 | — |
+
+#### Vertige cervicogénique (diagnostic d'élimination)  _(quadrant : Cervical)_
+
+| Signe (réponse d'anamnèse) | Poids | Source |
+|---|---|---|
+| Cervicalgie / raideur du cou associée au vertige : oui | +2 | — |
+| Mouvements soutenus du cou | +2 | — |
+| Instabilité / déséquilibre sans rotation | +1 | — |
+
+### Tests proposés
+
+**Manœuvre de Dix-Hallpike**  — _départage : VPPB du canal postérieur_  
+Technique : Patient assis, tête tournée 45° d'un côté ; passage rapide en décubitus tête en légère extension, oreille atteinte vers le bas. Recherche d'un nystagmus torsionnel-vertical (upbeat) après brève latence, fatigable.  
+Valeur diagnostique : Standard diagnostique du VPPB du canal postérieur. Se ≈ 79 % (IC 65-94), Sp ≈ 75 %, LR− ≈ 0,28 (Halker 2008 ; méthodologie faible). Un nystagmus torsionnel-vertical positionnel confirme le VPPB postérieur.  
+Source : Halker 2008 DOI 10.1097/NRL.0b013e31816f2820 ; Bhattacharyya 2017 DOI 10.1177/0194599816689667
+
+**Supine roll test (test de McClure-Pagnini)**  — _départage : VPPB du canal latéral (horizontal)_  
+Technique : En décubitus dorsal, tête fléchie 20°, rotation rapide de la tête d'un côté puis de l'autre ; recherche d'un nystagmus horizontal.  
+Valeur diagnostique : Test de référence pour le VPPB du canal latéral, à réaliser si le Dix-Hallpike montre un nystagmus horizontal ou est négatif malgré une histoire compatible.  
+Source : Bhattacharyya 2017 (CPG VPPB) DOI 10.1177/0194599816689667
+
+**Manœuvre de repositionnement d'Epley (canal postérieur)**  — _départage : VPPB du canal postérieur_  
+Technique : Séquence de repositionnement des otoconies pour le VPPB du canal postérieur.  
+Valeur diagnostique : Traitement de 1re intention du VPPB postérieur ; efficacité démontrée (Cochrane). Pas de restriction posturale nécessaire après la manœuvre.  
+Source : Hilton 2014 (Cochrane) DOI 10.1002/14651858.CD003162.pub3 ; Bhattacharyya 2017 DOI 10.1177/0194599816689667
+
+**Examen HINTS (Head Impulse, Nystagmus, Test of Skew)**  — _départage : Névrite vestibulaire_  
+Technique : Dans un vertige aigu continu : Head Impulse normal, nystagmus vertical/changeant de direction, ou skew deviation orientent vers une cause CENTRALE.  
+Valeur diagnostique : Aide à distinguer une atteinte périphérique (névrite) d'une cause centrale dans le syndrome vestibulaire aigu. Un HINTS « central » impose un avis urgent. Valeurs opérateur-dépendantes // TODO à re-sourcer précisément.  
+Source : _(non documentée / à sourcer)_
+
+### Drapeaux rouges
+
+| Drapeau | Déclencheur | Conduite | Source |
+|---|---|---|---|
+| **Suspicion de vertige d'origine centrale (AVC/TIA)** | Signes neurologiques : diplopie, dysarthrie, trouble de la déglutition, faiblesse, céphalée brutale : oui | Signes neurologiques associés : urgence, avis neurologique immédiat (imagerie). Ne pas rééduquer avant élimination d'une cause centrale. | Bhattacharyya 2017 (différencier VPPB des autres causes) DOI 10.1177/0194599816689667 |
+| **Nystagmus de type central** | Nystagmus vertical pur, non fatigable, ou ne suivant pas un schéma périphérique : oui | Nystagmus vertical pur/non fatigable/atypique : orienter vers une cause centrale → avis spécialisé. | — |
+| **Instabilité majeure évoquant une cause centrale** | Impossibilité de tenir debout / de marcher sans aide pendant la crise : oui | Impossibilité de tenir debout : évoque une atteinte centrale plutôt qu'un VPPB — avis médical. | — |
 
 ---
