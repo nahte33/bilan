@@ -1,55 +1,29 @@
-/* Service worker minimal et prudent.
-   - Ne casse pas les mises à jour : network-first pour les navigations.
-   - Cache runtime des GET same-origin (stale-while-revalidate léger).
-   - Aucune donnée patient n'est saisie/persistée par l'application. */
-const CACHE = "kine-ressources-v1";
-
-self.addEventListener("install", (event) => {
+/* =============================================================================
+   SERVICE WORKER — KILL SWITCH (neutralisé)
+   =============================================================================
+   L'ancien service worker mettait en cache les chunks JS de Next.js (dont les
+   noms changent à chaque build), ce qui pouvait servir des scripts périmés et
+   CASSER l'hydratation React (interactivité morte). Ce SW ne met plus rien en
+   cache : il se désenregistre, vide tous les caches, et recharge les onglets
+   pour que les navigateurs qui avaient l'ancien SW récupèrent une version saine.
+   ============================================================================= */
+self.addEventListener("install", () => {
   self.skipWaiting();
-  event.waitUntil(caches.open(CACHE));
 });
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))),
-    ).then(() => self.clients.claim()),
+    (async () => {
+      // Vider tous les caches créés par l'ancien SW.
+      const keys = await caches.keys();
+      await Promise.all(keys.map((k) => caches.delete(k)));
+      // Se désenregistrer définitivement.
+      await self.registration.unregister();
+      // Recharger les onglets ouverts pour repartir sur des assets frais.
+      const clients = await self.clients.matchAll({ type: "window" });
+      clients.forEach((client) => client.navigate(client.url));
+    })(),
   );
 });
 
-self.addEventListener("fetch", (event) => {
-  const { request } = event;
-  if (request.method !== "GET") return;
-  const url = new URL(request.url);
-  if (url.origin !== self.location.origin) return;
-
-  // Navigations : réseau d'abord, repli cache (mode hors-ligne).
-  if (request.mode === "navigate") {
-    event.respondWith(
-      fetch(request)
-        .then((res) => {
-          const copy = res.clone();
-          caches.open(CACHE).then((c) => c.put(request, copy));
-          return res;
-        })
-        .catch(() => caches.match(request).then((r) => r || caches.match("/"))),
-    );
-    return;
-  }
-
-  // Assets : cache d'abord, revalidation en arrière-plan.
-  event.respondWith(
-    caches.match(request).then((cached) => {
-      const network = fetch(request)
-        .then((res) => {
-          if (res && res.status === 200) {
-            const copy = res.clone();
-            caches.open(CACHE).then((c) => c.put(request, copy));
-          }
-          return res;
-        })
-        .catch(() => cached);
-      return cached || network;
-    }),
-  );
-});
+/* Pas de handler 'fetch' : le SW n'intercepte plus aucune requête. */

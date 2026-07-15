@@ -52,6 +52,11 @@ const nextConfig: NextConfig = {
   // Ne divulgue pas la version de Next dans l'en-tête `X-Powered-By`.
   poweredByHeader: false,
   async headers() {
+    // ⚠️ NE PAS appliquer la CSP en développement : Next.js/webpack utilise
+    // `eval()` en mode dev, qu'une CSP sans `'unsafe-eval'` bloque — ce qui
+    // empêche l'hydratation React (interactivité morte en local). Les en-têtes
+    // de sécurité ne concernent que le site déployé (production).
+    if (process.env.NODE_ENV !== "production") return [];
     return [{ source: "/:path*", headers: securityHeaders }];
   },
 };
